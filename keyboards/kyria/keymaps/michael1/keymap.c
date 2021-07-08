@@ -20,8 +20,7 @@ enum layers {
     _LAYER1,
     _LAYER2,
     _LAYER3,
-    _LAYER4,
-    _ADJUST
+    _LAYER4
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -35,26 +34,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |   `    |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |  - _   |
- * | LSHIFT |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+ * | LSHIFT |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |Space |Enter | TAB  |  | TAB  |Del   |Backsp|      |      |
- *                        |      |      |Layr2 |Layr4 |Layer3|  |Layer3|Layr4 |Layr1 |      |      |
+ *                        |      | CTRL |Space |Enter | TAB  |  | TAB  |Del   |Backsp| ALT  |      |
+ *                        |      | +TAB |Layr2 |Layr4 |Layer3|  |Layer3|Layr4 |Layr1 |+TAB  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_PIPE,
       KC_ESC, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_QUOT,
-      LT(KC_LSFT, KC_GRV), KC_Z, KC_X, KC_C, KC_V, KC_B, _______, _______, _______, _______, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
+      LT(KC_LSFT, KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
 
-      _______,  _______, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
-      LT(_LAYER3, KC_TAB), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), _______, _______
+      _______,  LCTL(KC_TAB), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
+      LT(_LAYER3, KC_TAB), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), LALT(KC_TAB), _______
     ),
 /*
  * Layer1: Symbols
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  !   |  @   |  #   |  $   |  %   |                              |  ^   |  &   |  *   |  (   |  )   |  | \   |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ *|--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  {   |  [   |  ]   |  }   |  NO  |                              |  <-  |  v   |  ^   |  ->  |  NO  |  NO    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  (   |  <   |  >   |  )   |  NO  |      |      |  |      |      | HOME |PGDOWN|PGUP  | END  |  \   |  NO    |
@@ -129,26 +128,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_MUTE, _______, KC_VOLD, KC_VOLU, _______, _______, _______, _______, _______, KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-/*
- * Adjust Layer: Function keys, RGB
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        | F1   |  F2  | F3   | F4   | F5   |                              | F6   | F7   |  F8  | F9   | F10  |        |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | TOG  | SAI  | HUI  | VAI  | MOD  |                              |      |      |      | F11  | F12  |        |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      | SAD  | HUD  | VAD  | RMOD |      |      |  |      |      |      |      |      |      |      |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
-    [_ADJUST] = LAYOUT(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, _______, _______, KC_F11,  KC_F12,  _______,
-      _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-    ),
 // /*
 //  * Layer template
 //  *
@@ -170,10 +149,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 //     ),
 };
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LAYER2, _LAYER4, _ADJUST);
-}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -204,16 +179,14 @@ static void render_qmk_logo(void) {
 }
 
 void set_led_color(uint8_t hue, uint8_t sat, uint8_t val) {
-    rgblight_sethsv_range(hue, sat, val, 0, 10);
-    /*rgblight_sethsv_master(hue, sat, val);*/
-    /*rgblight_sethsv_slave(hue, sat, val);*/
+    rgblight_sethsv_range(hue, sat, val, 0, RGBLED_NUM/2);
     rgblight_set(); // Utility functions do not call rgblight_set() automatically, so they need to be called explicitly.
 }
 
 static void render_status(void) {
     // QMK Logo and version information
     render_qmk_logo();
-    oled_write_P(PSTR("Kyria rev1.0\n\n"), false);
+    oled_write_P(PSTR("Kyria rev1.3\n\n"), false);
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
@@ -258,24 +231,24 @@ void oled_task_user(void) {
 }
 #endif
 
-/*#ifdef ENCODER_ENABLE*/
-/*bool encoder_update_user(uint8_t index, bool clockwise) {*/
-    /*if (index == 0) {*/
-        /*// Volume control*/
-        /*if (clockwise) {*/
-            /*tap_code(KC_VOLU);*/
-        /*} else {*/
-            /*tap_code(KC_VOLD);*/
-        /*}*/
-    /*}*/
-    /*else if (index == 1) {*/
-        /*// Page up/Page down*/
-        /*if (clockwise) {*/
-            /*tap_code(KC_DOWN);*/
-        /*} else {*/
-            /*tap_code(KC_UP);*/
-        /*}*/
-    /*}*/
-    /*return true;*/
-/*}*/
-/*#endif*/
+#ifdef ENCODER_ENABLE
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        // Volume control
+        if (clockwise) {
+            tap_code(KC_VOLU);
+        } else {
+            tap_code(KC_VOLD);
+        }
+    }
+    else if (index == 1) {
+        // Page up/Page down
+        if (clockwise) {
+            tap_code(KC_DOWN);
+        } else {
+            tap_code(KC_UP);
+        }
+    }
+    return true;
+}
+#endif

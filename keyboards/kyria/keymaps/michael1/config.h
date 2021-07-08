@@ -26,9 +26,10 @@
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
   #define RGBLIGHT_LIMIT_VAL 150
+  //#define RGBLIGHT_SLEEP
 #endif
 
-
+//#define EE_HANDS
 
 // Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 200
@@ -50,6 +51,7 @@
 #define HOME_D LGUI_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
 #define HOME_G RALT_T(KC_G)
+#define HOME_V RALT_T(KC_V)
 
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)
@@ -57,7 +59,8 @@
 #define HOME_L LALT_T(KC_L)
 #define HOME_SCLN RSFT_T(KC_SCLN)
 #define HOME_H RALT_T(KC_H)
+#define HOME_M RALT_T(KC_M)
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
-// #define SPLIT_USB_DETECT
-// #define NO_USB_STARTUP_CHECK
+#define SPLIT_USB_DETECT
+#define NO_USB_STARTUP_CHECK
