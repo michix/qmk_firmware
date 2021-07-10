@@ -26,6 +26,7 @@
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
   #define RGBLIGHT_LIMIT_VAL 150
+  #define RGBLIGHT_LAYERS
 #endif
 
 //#define EE_HANDS
@@ -41,8 +42,6 @@
 
 // Apply the modifier on keys that are tapped during a short hold of a modtap
 #define PERMISSIVE_HOLD
-
-
 
 // Left-hand home row mods
 #define HOME_A LSFT_T(KC_A)

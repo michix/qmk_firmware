@@ -23,6 +23,49 @@ enum layers {
     _LAYER4
 };
 
+const rgblight_segment_t PROGMEM my_qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 19, HSV_GREEN}
+);
+const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 19, HSV_SPRINGGREEN}
+);
+const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 19, HSV_AZURE}
+);
+const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 19, HSV_ORANGE}
+);
+const rgblight_segment_t PROGMEM my_layer4_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 19, HSV_PURPLE}
+);
+
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    my_qwerty_layer,
+    my_layer1_layer,
+    my_layer2_layer,
+    my_layer3_layer,
+    my_layer4_layer
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, _LAYER1));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _LAYER2));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _LAYER3));
+    rgblight_set_layer_state(4, layer_state_cmp(state, _LAYER4));
+    return state;
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
@@ -179,8 +222,8 @@ static void render_qmk_logo(void) {
 }
 
 void set_led_color(uint8_t hue, uint8_t sat, uint8_t val) {
-    rgblight_sethsv_range(hue, sat, val, 0, RGBLED_NUM/2);
-    rgblight_set(); // Utility functions do not call rgblight_set() automatically, so they need to be called explicitly.
+    /*rgblight_sethsv_range(hue, sat, val, 0, RGBLED_NUM/2);*/
+    /*rgblight_set(); // Utility functions do not call rgblight_set() automatically, so they need to be called explicitly.*/
 }
 
 static void render_status(void) {
