@@ -27,9 +27,11 @@
   #define RGBLIGHT_VAL_STEP 8
   #define RGBLIGHT_LIMIT_VAL 150
   #define RGBLIGHT_LAYERS
+  #define RGBLIGHT_ANIMATIONS
+  //#define RGBLIGHT_EFFECT_BREATHING
 #endif
 
-//#define EE_HANDS
+#define EE_HANDS
 
 // Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 200

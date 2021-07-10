@@ -24,19 +24,19 @@ enum layers {
 };
 
 const rgblight_segment_t PROGMEM my_qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 19, HSV_GREEN}
+    {0, RGBLED_NUM-1, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 19, HSV_SPRINGGREEN}
+    {0, RGBLED_NUM-1, HSV_SPRINGGREEN}
 );
 const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 19, HSV_AZURE}
+    {0, RGBLED_NUM-1, HSV_AZURE}
 );
 const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 19, HSV_ORANGE}
+    {0, RGBLED_NUM-1, HSV_ORANGE}
 );
 const rgblight_segment_t PROGMEM my_layer4_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 19, HSV_PURPLE}
+    {0, RGBLED_NUM-1, HSV_PURPLE}
 );
 
 // Now define the array of layers. Later layers take precedence
