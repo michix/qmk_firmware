@@ -79,8 +79,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |   `    |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |  - _   |
  * | LSHIFT |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      | CTRL |Space |Enter | TAB  |  | TAB  |Del   |Backsp| ALT  |      |
- *                        |      | +TAB |Layr2 |Layr4 |Layer3|  |Layer3|Layr4 |Layr1 |+TAB  |      |
+ *                        |      | CTRL | TAB  |Space |Enter |  |Del   |Backsp| TAB  | ALT  |      |
+ *                        |      | +TAB |Layer3|Layr2 |Layr4 |  |Layr4 |Layr1 |Layer3|+TAB  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
@@ -88,8 +88,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_QUOT,
       LT(KC_LSFT, KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
 
-      RGB_MODE_FORWARD,  LCTL(KC_TAB), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
-      LT(_LAYER3, KC_TAB), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), LALT(KC_TAB), RGB_MODE_BACKWARD
+      RGB_MODE_FORWARD,  LCTL(KC_TAB), LT(_LAYER3, KC_TAB), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT),
+      LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), LT(_LAYER3, KC_TAB), LALT(KC_TAB), RGB_MODE_REVERSE
     ),
 /*
  * Layer1: Symbols
