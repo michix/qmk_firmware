@@ -88,8 +88,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_QUOT,
       LT(KC_LSFT, KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
 
-      _______,  LCTL(KC_TAB), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
-      LT(_LAYER3, KC_TAB), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), LALT(KC_TAB), _______
+      RGB_MODE_FORWARD,  LCTL(KC_TAB), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
+      LT(_LAYER3, KC_TAB), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), LALT(KC_TAB), RGB_MODE_BACKWARD
     ),
 /*
  * Layer1: Symbols
@@ -235,22 +235,27 @@ static void render_status(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
+            rgblight_mode(RGBLIGHT_MODE_BREATHING);
             oled_write_P(PSTR("Default\n"), false);
             set_led_color(HSV_GREEN);
             break;
         case _LAYER1:
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("Symbols\n"), false);
             set_led_color(HSV_SPRINGGREEN);
             break;
         case _LAYER2:
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("Numbers\n"), false);
             set_led_color(HSV_AZURE);
             break;
         case _LAYER3:
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("F-Keys\n"), false);
             set_led_color(HSV_ORANGE);
             break;
         case _LAYER4:
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("Media/Mouse\n"), false);
             set_led_color(HSV_PURPLE);
             break;
