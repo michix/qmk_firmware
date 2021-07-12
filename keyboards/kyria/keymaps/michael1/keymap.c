@@ -49,20 +49,37 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 );
 
 void keyboard_post_init_user(void) {
-    // Enable the LED layers
-    rgblight_layers = my_rgb_layers;
-}
-
-layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
-    return state;
+    rgblight_sethsv(HSV_GREEN);
+    rgblight_mode(RGBLIGHT_MODE_BREATHING);
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, _LAYER1));
-    rgblight_set_layer_state(2, layer_state_cmp(state, _LAYER2));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _LAYER3));
-    rgblight_set_layer_state(4, layer_state_cmp(state, _LAYER4));
+    switch(get_highest_layer(state)) {
+        case _QWERTY:
+            rgblight_sethsv(HSV_GREEN);
+            rgblight_mode(RGBLIGHT_MODE_BREATHING);
+            break;
+        case _LAYER1:
+            rgblight_sethsv(HSV_SPRINGGREEN);
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            break;
+        case _LAYER2:
+            rgblight_sethsv(HSV_AZURE);
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            break;
+        case _LAYER3:
+            rgblight_sethsv(HSV_ORANGE);
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            break;
+        case _LAYER4:
+            rgblight_sethsv(HSV_PURPLE);
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            break;
+        default:
+            rgblight_sethsv(HSV_RED);
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            break;
+    }
     return state;
 }
 
@@ -235,29 +252,19 @@ static void render_status(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            rgblight_mode(RGBLIGHT_MODE_BREATHING);
             oled_write_P(PSTR("Default\n"), false);
-            set_led_color(HSV_GREEN);
             break;
         case _LAYER1:
-            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("Symbols\n"), false);
-            set_led_color(HSV_SPRINGGREEN);
             break;
         case _LAYER2:
-            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("Numbers\n"), false);
-            set_led_color(HSV_AZURE);
             break;
         case _LAYER3:
-            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("F-Keys\n"), false);
-            set_led_color(HSV_ORANGE);
             break;
         case _LAYER4:
-            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             oled_write_P(PSTR("Media/Mouse\n"), false);
-            set_led_color(HSV_PURPLE);
             break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
