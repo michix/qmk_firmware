@@ -15,6 +15,20 @@
  */
 #include QMK_KEYBOARD_H
 
+/* Tap dancing */
+enum {
+    TD_C_COPY,
+    TD_V_PASTE,
+    TD_Z_UNDO
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_C_COPY] = ACTION_TAP_DANCE_DOUBLE(KC_C, LCTL(KC_C)),
+    [TD_V_PASTE] = ACTION_TAP_DANCE_DOUBLE(KC_V, LCTL(KC_V)),
+    [TD_Z_UNDO] = ACTION_TAP_DANCE_DOUBLE(KC_Z, LCTL(KC_Z))
+};
+
+/* Layer color effects */
 enum layers {
     _QWERTY = 0,
     _LAYER1,
@@ -69,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |   `    |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |  - _   |
- * | LSHIFT |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * | LSHIFT |      |      |      |      |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      | Teams|Space |Enter | TAB  |  | TAB  |Del   |Backsp|Teams |      |
  *                        |      | Share|Layr2 |Layr4 |Layer3|  |Layer3|Layr4 |Layr1 |Mute  |      |
@@ -78,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_PIPE,
       KC_ESC, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_QUOT,
-      LT(KC_LSFT, KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
+      LT(KC_LSFT, KC_GRV), TD(TD_Z_UNDO), KC_X, TD(TD_C_COPY), TD(TD_V_PASTE), KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
 
       RGB_MODE_FORWARD,  RCS(KC_E), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
       LT(_LAYER3, KC_TAB), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
