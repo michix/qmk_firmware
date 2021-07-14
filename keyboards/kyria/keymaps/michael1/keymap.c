@@ -23,31 +23,6 @@ enum layers {
     _LAYER4
 };
 
-const rgblight_segment_t PROGMEM my_qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM-1, HSV_GREEN}
-);
-const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM-1, HSV_SPRINGGREEN}
-);
-const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM-1, HSV_AZURE}
-);
-const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM-1, HSV_ORANGE}
-);
-const rgblight_segment_t PROGMEM my_layer4_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM-1, HSV_PURPLE}
-);
-
-// Now define the array of layers. Later layers take precedence
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_qwerty_layer,
-    my_layer1_layer,
-    my_layer2_layer,
-    my_layer3_layer,
-    my_layer4_layer
-);
-
 void keyboard_post_init_user(void) {
     rgblight_sethsv(HSV_GREEN);
     rgblight_mode(RGBLIGHT_MODE_BREATHING);
