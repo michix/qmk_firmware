@@ -17,12 +17,18 @@
 
 /* Tap dancing */
 enum {
+    TD_A_ALTGRA,
+    TD_O_ALTGRO,
+    TD_U_ALTGRU,
     TD_C_COPY,
     TD_V_PASTE,
     TD_Z_UNDO
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_A_ALTGRA] = ACTION_TAP_DANCE_DOUBLE(KC_A, RALT(KC_A)),
+    [TD_O_ALTGRO] = ACTION_TAP_DANCE_DOUBLE(KC_O, RALT(KC_O)),
+    [TD_U_ALTGRU] = ACTION_TAP_DANCE_DOUBLE(KC_U, RALT(KC_U)),
     [TD_C_COPY] = ACTION_TAP_DANCE_DOUBLE(KC_C, LCTL(KC_C)),
     [TD_V_PASTE] = ACTION_TAP_DANCE_DOUBLE(KC_V, LCTL(KC_V)),
     [TD_Z_UNDO] = ACTION_TAP_DANCE_DOUBLE(KC_Z, LCTL(KC_Z))
