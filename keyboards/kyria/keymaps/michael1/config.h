@@ -45,13 +45,16 @@
 // Apply the modifier on keys that are tapped during a short hold of a modtap
 #define PERMISSIVE_HOLD
 
+#define COMBO_COUNT 2
+#define COMBO_TERM 300
+
 // Left-hand home row mods
 #define HOME_A LSFT_T(KC_A)
 #define HOME_S LALT_T(KC_S)
 #define HOME_D LGUI_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
 #define HOME_G RALT_T(KC_G)
-//#define HOME_V RALT_T(KC_V)
+#define HOME_V RALT_T(KC_V)
 
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)

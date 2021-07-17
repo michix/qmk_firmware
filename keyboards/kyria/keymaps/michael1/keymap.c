@@ -15,24 +15,53 @@
  */
 #include QMK_KEYBOARD_H
 
-/* Tap dancing */
-enum {
-    TD_A_ALTGRA,
-    TD_O_ALTGRO,
-    TD_U_ALTGRU,
-    TD_C_COPY,
-    TD_V_PASTE,
-    TD_Z_UNDO
+/* Combos */
+enum combo_events {
+  ZC_COPY,
+  XC_PASTE
 };
 
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_A_ALTGRA] = ACTION_TAP_DANCE_DOUBLE(KC_A, RALT(KC_A)),
-    [TD_O_ALTGRO] = ACTION_TAP_DANCE_DOUBLE(KC_O, RALT(KC_O)),
-    [TD_U_ALTGRU] = ACTION_TAP_DANCE_DOUBLE(KC_U, RALT(KC_U)),
-    [TD_C_COPY] = ACTION_TAP_DANCE_DOUBLE(KC_C, LCTL(KC_C)),
-    [TD_V_PASTE] = ACTION_TAP_DANCE_DOUBLE(KC_V, LCTL(KC_V)),
-    [TD_Z_UNDO] = ACTION_TAP_DANCE_DOUBLE(KC_Z, LCTL(KC_Z))
+const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [ZC_COPY] = COMBO_ACTION(copy_combo),
+  [XC_PASTE] = COMBO_ACTION(paste_combo),
 };
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case ZC_COPY:
+      if (pressed) {
+        tap_code16(LCTL(KC_C));
+      }
+      break;
+    case XC_PASTE:
+      if (pressed) {
+        tap_code16(LCTL(KC_V));
+      }
+      break;
+  }
+}
+
+/* Tap dancing */
+/*enum {*/
+    /*TD_A_ALTGRA,*/
+    /*TD_O_ALTGRO,*/
+    /*TD_U_ALTGRU,*/
+    /*TD_C_COPY,*/
+    /*TD_V_PASTE,*/
+    /*TD_Z_UNDO*/
+/*};*/
+
+/*qk_tap_dance_action_t tap_dance_actions[] = {*/
+    /*[TD_A_ALTGRA] = ACTION_TAP_DANCE_DOUBLE(KC_A, RALT(KC_A)),*/
+    /*[TD_O_ALTGRO] = ACTION_TAP_DANCE_DOUBLE(KC_O, RALT(KC_O)),*/
+    /*[TD_U_ALTGRU] = ACTION_TAP_DANCE_DOUBLE(KC_U, RALT(KC_U)),*/
+    /*[TD_C_COPY] = ACTION_TAP_DANCE_DOUBLE(KC_C, LCTL(KC_C)),*/
+    /*[TD_V_PASTE] = ACTION_TAP_DANCE_DOUBLE(KC_V, LCTL(KC_V)),*/
+    /*[TD_Z_UNDO] = ACTION_TAP_DANCE_DOUBLE(KC_Z, LCTL(KC_Z))*/
+/*};*/
 
 /* Layer color effects */
 enum layers {
@@ -89,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |   `    |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? |  - _   |
- * | LSHIFT |      |      |      |      |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * | LSHIFT |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      | Teams|Space |Enter | TAB  |  | TAB  |Del   |Backsp|Teams |      |
  *                        |      | Share|Layr2 |Layr4 |Layer3|  |Layer3|Layr4 |Layr1 |Mute  |      |
@@ -98,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_PIPE,
       KC_ESC, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_QUOT,
-      LT(KC_LSFT, KC_GRV), TD(TD_Z_UNDO), KC_X, TD(TD_C_COPY), TD(TD_V_PASTE), KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
+      LT(KC_LSFT, KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
 
       RGB_MODE_FORWARD,  RCS(KC_E), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
       LT(_LAYER3, KC_TAB), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
