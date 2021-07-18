@@ -117,20 +117,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |  ESC   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
  * |        |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |   `    |   Z  |   X  |   C  |   V  |   B  | ESC  |      |  |      |  `   |   N  |   M  | ,  < | . >  | /  ? |  - _   |
- * | LSHIFT |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * |   `    |   Z  |   X  |   C  |   V  |   B  | ESC  |      |  |      | ' "  |   N  |   M  | ,  < | . >  | /  ? |  - _   |
+ * | ALTGR  |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      | Teams|Space |Enter | TAB  |  |  '   |Del   |Backsp|Teams |      |
+ *                        |      | Teams|Space |Enter | TAB  |  |  `   |Del   |Backsp|Teams |      |
  *                        |      | Share|Layr2 |Layr4 |Layer3|  |Layer3|Layr4 |Layr1 |Mute  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
       KC_ESC, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_QUOT,
-      LT(KC_LSFT, KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, _______, _______, KC_GRV, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
+      RALT_T(KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, _______, _______, KC_QUOT, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
 
       RGB_MODE_FORWARD,  RCS(KC_E), LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
-      LT(_LAYER3, KC_QUOT), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      LT(_LAYER3, KC_GRV), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
     ),
 /*
  * Layer1: Symbols
@@ -168,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_LAYER2] = LAYOUT(
       _______, KC_1, KC_2,  KC_3, KC_4,  KC_5,                                                  KC_6, KC_7, KC_8, KC_9,  KC_0, _______,
-      _______, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, KC_EQUAL,                                     KC_MINS, KC_4, KC_5,  KC_6, RSFT(KC_EQUAL),   KC_NO,
+      _______, HOME2_A, HOME2_S, HOME2_D, HOME2_F, KC_EQUAL,                                     KC_MINS, HOME2_J, HOME2_K,  HOME2_L, HOME2_SCLN, KC_NO,
       _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_PIPE, _______, _______, _______, _______, KC_0, KC_1,  KC_2, KC_3, KC_SLSH, _______,
                                  _______, _______, _______, _______, _______,  _______,  KC_ENT, KC_DOT, _______, _______
     ),
