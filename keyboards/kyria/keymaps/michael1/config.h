@@ -43,7 +43,7 @@
 //#define TAPPING_FORCE_HOLD
 
 // Apply the modifier on keys that are tapped during a short hold of a modtap
-//#define PERMISSIVE_HOLD
+#define PERMISSIVE_HOLD
 
 #define COMBO_COUNT 2
 #define COMBO_TERM 300
