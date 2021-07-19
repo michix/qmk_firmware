@@ -53,10 +53,10 @@
 #define HOME_S LALT_T(KC_S)
 #define HOME_D LGUI_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
-#define HOME2_A LSFT_T(KC_LCBR)
+#define HOME2_A KC_LCBR
 #define HOME2_S LALT_T(KC_LBRC)
 #define HOME2_D LGUI_T(KC_RBRC)
-#define HOME2_F LCTL_T(KC_RCBR)
+#define HOME2_F KC_RCBR
 #define HOME_G RALT_T(KC_G)
 #define HOME_V RALT_T(KC_V)
 
