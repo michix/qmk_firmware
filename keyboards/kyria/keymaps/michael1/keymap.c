@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  {   |  [   |  ]   |  }   |  NO  |                              |  <-  |  v   |  ^   |  ->  |  NO  |  NO    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  (   |  <   |  >   |  )   |  NO  |      |      |  |      |      |  NO  | HOME |PGDOWN|PGUP  | END  |    \   |
+ * |        |  (   |  <   |  >   |  )   |  NO  |      |      |  |      |      | HOME |PGDOWN|PGUP  | END  |  \   |   NO   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -149,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LAYER1] = LAYOUT(
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN, KC_BSLS,
       _______, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, KC_NO,                                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_NO,   KC_NO,
-      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_NO, _______, _______, _______, _______, KC_NO, KC_HOME, KC_PGDOWN,  KC_PGUP, KC_END,   KC_BSLS,
+      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_NO, _______, _______, _______, _______, KC_HOME, KC_PGDOWN,  KC_PGUP, KC_END,   KC_BSLS, KC_NO,
                                  _______, _______, _______, _______, _______,  _______,  _______, _______, _______, _______
     ),
 /*
