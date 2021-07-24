@@ -114,11 +114,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  ESC   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  NO    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  ESC   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
- * |        |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|  ' "   |
+ * | SHIFT  |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | SHIFT  |
+ * |        |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |   `    |   Z  |   X  |   C  |   V  |   B  | ESC  |      |  |      | ' "  |   N  |   M  | ,  < | . >  | /  ? |  - _   |
- * | ALTGR  |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * | ALTGR  |   Z  |   X  |   C  |   V  |   B  | ESC  |      |  |      | ' "  |   N  |   M  | ,  < | . >  | /  ? | ALTGR  |
+ * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      | ESC  |Space |Enter | TAB  |  |  `   |Del   |Backsp|Teams |      |
  *                        |      |      |Layr2 |Layr4 |Layer3|  |Layer3|Layr4 |Layr1 |Mute  |      |
@@ -126,8 +126,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
-      KC_ESC, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_QUOT,
-      RALT_T(KC_GRV), KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, _______, _______, KC_QUOT, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
+      KC_LSHIFT, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_RSHIFT,
+      KC_RALT, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, _______, _______, KC_QUOT, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_RALT,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), LT(_LAYER3, KC_TAB),
       LT(_LAYER3, KC_GRV), LT(_LAYER4, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
