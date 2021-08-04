@@ -50,6 +50,7 @@
 
 // Left-hand home row mods
 #define HOME_A LSFT_T(KC_A)
+#define HOME_Z LSFT_T(KC_Z)
 #define HOME_S LALT_T(KC_S)
 #define HOME_D LGUI_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
@@ -65,6 +66,7 @@
 #define HOME_K RGUI_T(KC_K)
 #define HOME_L LALT_T(KC_L)
 #define HOME_SCLN RSFT_T(KC_SCLN)
+#define HOME_SLSH RSFT_T(KC_SLSH)
 #define HOME2_J RCTL_T(KC_4)
 #define HOME2_K RGUI_T(KC_5)
 #define HOME2_L LALT_T(KC_6)
