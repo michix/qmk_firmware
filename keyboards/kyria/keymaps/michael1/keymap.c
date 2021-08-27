@@ -138,9 +138,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  !   |  @   |  #   |  $   |  %   |                              |  ^   |  &   |  *   |  (   |  )   |  | \   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |   !    |  {   |  [   |  ]   |  }   |  NO  |                              |  <-  |  v   |  ^   |  ->  |  NO  |  | \   |
+ * |   !    |  {   |  [   |  ]   |  }   |  '"  |                              |  <-  |  v   |  ^   |  ->  |  NO  |  | \   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  (   |  <   |  >   |  )   |  NO  |      |      |  |      |      | HOME |PGDOWN|PGUP  | END  |  \   |   NO   |
+ * |        |  (   |  <   |  >   |  )   |  `   |      |      |  |      |      | HOME |PGDOWN|PGUP  | END  |  \   |   NO   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -148,8 +148,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_LAYER1] = LAYOUT(
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN, KC_BSLS,
-      KC_EXLM, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, KC_NO,                                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_NO,   KC_BSLS,
-      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_NO, _______, _______, _______, _______, KC_HOME, KC_PGDOWN,  KC_PGUP, KC_END,   KC_BSLS, KC_NO,
+      KC_EXLM, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, KC_QUOT,                                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_RSHIFT,   KC_BSLS,
+      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_GRV, _______, _______, _______, _______, KC_HOME, KC_PGDOWN,  KC_PGUP, KC_END,   KC_BSLS, KC_NO,
                                  _______, _______, _______, _______, _______,  _______,  _______, _______, _______, _______
     ),
 /*
@@ -160,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |   1    |  {   |  [   |  ]   |  }   |  =   |                              |  -   |  4   |  5   |  6   |  +   |   0    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  (   |  <   |  >   |  )   |  |   |      |      |  |      |      |  .   |  1   |  2   |  3   |  /   |        |
+ * |        |  (   |  <   |  >   |  )   |  |   |      |      |  |      | '"   |  .   |  1   |  2   |  3   |  /   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |Enter |  0   |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -169,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LAYER2] = LAYOUT(
       _______, KC_1, KC_2,  KC_3, KC_4,  KC_5,                                                  KC_6, KC_7, KC_8, KC_9,  KC_0, _______,
       KC_1, HOME2_A, HOME2_S, HOME2_D, HOME2_F, KC_EQUAL,                                     KC_MINS, HOME2_J, HOME2_K,  HOME2_L, HOME2_SCLN, KC_0,
-      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_PIPE, _______, _______, _______, _______, KC_DOT, KC_1,  KC_2, KC_3, KC_SLSH, _______,
+      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_PIPE, _______, _______, _______, KC_QUOT, KC_DOT, KC_1,  KC_2, KC_3, KC_SLSH, _______,
                                  _______, _______, _______, _______, _______,  _______,  KC_ENT, KC_0, _______, _______
     ),
 /*
