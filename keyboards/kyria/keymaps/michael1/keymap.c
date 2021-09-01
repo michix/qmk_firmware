@@ -17,42 +17,34 @@
 
 /* Combos */
 enum combo_events {
-  ZC_COPY,
-  XC_PASTE,
-  WE_TAB,
-  ER_TAB
+  CB_COPY,
+  CB_PASTE,
+  CB_TAB
 };
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM tab_combo[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_W, KC_R, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-  [ZC_COPY] = COMBO_ACTION(copy_combo),
-  [XC_PASTE] = COMBO_ACTION(paste_combo),
-  [WE_TAB] = COMBO_ACTION(esc_combo),
-  [ER_TAB] = COMBO_ACTION(tab_combo)
+  [CB_COPY] = COMBO_ACTION(copy_combo),
+  [CB_PASTE] = COMBO_ACTION(paste_combo),
+  [CB_TAB] = COMBO_ACTION(tab_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
-    case ZC_COPY:
+    case CB_COPY:
       if (pressed) {
         tap_code16(LCTL(KC_C));
       }
       break;
-    case XC_PASTE:
+    case CB_PASTE:
       if (pressed) {
         tap_code16(LCTL(KC_V));
       }
       break;
-    case WE_TAB:
-      if (pressed) {
-        tap_code16(KC_ESC);
-      }
-      break;
-    case ER_TAB:
+    case CB_TAB:
       if (pressed) {
         tap_code16(KC_TAB);
       }
@@ -119,10 +111,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  ESC   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  NO    |
- * |        |    <ESC>  <TAB>    |      |      |                              |   Y  |   U  |   I  |   O  |   P  |  NO    |
+ * |        |    <TAB>    |      |      |      |                              |   Y  |   U  |   I  |   O  |   P  |  NO    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |   Q    |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  P     |
- * |        |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|        |
+ * | 2:ESC  |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |   Z    |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
  * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
@@ -133,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
-      KC_Q, HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
+      TD(TD_Q_ESC), HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
       KC_Z, KC_Z, KC_X, KC_C, HOME_V, KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_SLSH,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), _______,
