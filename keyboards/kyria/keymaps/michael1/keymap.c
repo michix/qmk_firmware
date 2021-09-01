@@ -25,12 +25,13 @@ enum combo_events {
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM tab_combo[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_E, KC_R, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [ZC_COPY] = COMBO_ACTION(copy_combo),
   [XC_PASTE] = COMBO_ACTION(paste_combo),
-  [WE_TAB] = COMBO_ACTION(tab_combo),
+  [WE_TAB] = COMBO_ACTION(esc_combo),
   [ER_TAB] = COMBO_ACTION(tab_combo)
 };
 
