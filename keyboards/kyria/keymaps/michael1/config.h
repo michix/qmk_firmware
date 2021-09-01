@@ -45,7 +45,7 @@
 // Apply the modifier on keys that are tapped during a short hold of a modtap
 #define PERMISSIVE_HOLD
 
-#define COMBO_COUNT 2
+#define COMBO_COUNT 4
 #define COMBO_TERM 300
 
 // Left-hand home row mods
