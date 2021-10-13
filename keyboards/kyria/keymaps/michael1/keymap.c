@@ -116,20 +116,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |   Q    |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  P     |
  * | 2:ESC  |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |   Z    |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
+ * |   Z    |   Z  |   X  |   C  |   V  |   B  | ESC  |      |  |      | TAB  |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
  * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      | ESC  |Space |Enter |      |  |      |Del   |Backsp|Teams |      |
- *                        |      |      |Layr2 |Layr4 |      |  |      |Layr3 |Layr1 |Mute  |      |
+ *                        |      |      |Layr2 |Layr4 | ESC  |  | TAB  |Layr3 |Layr1 |Mute  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
       TD(TD_Q_ESC), HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
-      KC_Z, KC_Z, KC_X, KC_C, HOME_V, KC_B, _______, _______, _______, _______, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_SLSH,
+      KC_Z, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, _______, _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_SLSH,
 
-      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), _______,
-      _______, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
+      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
     ),
 /*
  * Layer1: Symbols
