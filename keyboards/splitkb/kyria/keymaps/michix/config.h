@@ -16,7 +16,7 @@
 
 #pragma once
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
   #define OLED_DISPLAY_128X64
 #endif
 
@@ -60,6 +60,11 @@
 #define HOME2_F KC_RCBR
 #define HOME_G RALT_T(KC_G)
 #define HOME_V RALT_T(KC_V)
+//#define HOME_CM_A LSFT_T(KC_A)
+//#define HOME_CM_R LALT_T(KC_R)
+//#define HOME_CM_S LGUI_T(KC_S)
+//#define HOME_CM_T LCTL_T(KC_T)
+//#define HOME_CM_D RALT_T(KC_D)
 
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)
@@ -73,6 +78,11 @@
 #define HOME2_SCLN RSFT_T(KC_KP_PLUS)
 #define HOME_H RALT_T(KC_H)
 #define HOME_M RALT_T(KC_M)
+//#define HOME_CM_N RCTL_T(KC_N)
+//#define HOME_CM_E RGUI_T(KC_E)
+//#define HOME_CM_I LALT_T(KC_I)
+//#define HOME_CM_O RSFT_T(KC_O)
+//#define HOME_CM_H RALT_T(KC_H)
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT

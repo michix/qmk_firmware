@@ -68,6 +68,7 @@ enum layers {
     _LAYER2,
     _LAYER3,
     _LAYER4
+    /*_COLEMAK_DH*/
 };
 
 void keyboard_post_init_user(void) {
@@ -97,6 +98,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             rgblight_sethsv(HSV_PURPLE);
             rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             break;
+        /*case _COLEMAK_DH:*/
+            /*rgblight_sethsv(HSV_YELLOW);*/
+            /*rgblight_mode(RGBLIGHT_MODE_BREATHING);*/
+            /*break;*/
         default:
             rgblight_sethsv(HSV_RED);
             rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
@@ -114,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |    <TAB>    |      |      |      |                              |   Y  |   U  |   I  |   O  |   P  |  NO    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |   Q    |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  P     |
- * | 2:ESC  |LShift|  ALT | GUI  | CTRL |ALTGR |                              |ALTGR | CTRL |  GUI |  ALT |RShift|        |
+ * | 2:ESC  |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |   Z    |   Z  |   X  |   C  |   V  |   B  | ESC  |      |  |      | TAB  |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
+ * |        |   Z  |   X  |   C  |   V  |   B  | ESC  |COLEMA|  |      | TAB  |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
  * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      | ESC  |Space |Enter |      |  |      |Del   |Backsp|Teams |      |
@@ -125,8 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
-      TD(TD_Q_ESC), HOME_A, HOME_S, HOME_D, HOME_F, HOME_G,     HOME_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
-      KC_Z, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, _______, _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, KC_SLSH,
+      TD(TD_Q_ESC), HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
+      _______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, _______, _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
+      /*_______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, TO(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,*/
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
       KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
@@ -211,6 +217,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_MUTE, _______, KC_VOLD, KC_VOLU, _______, _______, _______, _______, _______, KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
+/*
+ * Base Layer: COLEMAK_DH
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |  ESC   |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  | ;  : |  NO    |
+ * |        |    <TAB>    |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |   Q    |   A  |   R  |  S   |   T  |   G  |                              |   M  |   N  |   E  |   I  |  O   |  ; :   |
+ * | 2:ESC  |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |   Z  |   X  |   C  |   D  |   V  | ESC  |QWERTY|  |      | TAB  |   K  |   H  | ,  < | . >  | /  ? |        |
+ * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      | ESC  |Space |Enter |      |  |      |Del   |Backsp|Teams |      |
+ *                        |      |      |Layr2 |Layr4 | ESC  |  | TAB  |Layr3 |Layr1 |Mute  |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    /*[_COLEMAK_DH] = LAYOUT(*/
+      /*KC_ESC, KC_Q, KC_W, KC_F, KC_P, KC_B,               KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_NO,*/
+      /*TD(TD_Q_ESC), HOME_CM_A, HOME_CM_R, HOME_CM_S, HOME_CM_T, KC_G,     KC_M, HOME_CM_N, HOME_CM_E, HOME_CM_I, HOME_CM_O, KC_SCLN,*/
+      /*_______, KC_Z, KC_X, KC_C, HOME_CM_D, KC_V, KC_ESC, TO(_QWERTY), _______, KC_TAB, KC_K, HOME_CM_H, KC_COMM, KC_DOT, KC_SLSH, _______,*/
+
+      /*RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,*/
+      /*KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE*/
+    /*)*/
 // /*
 //  * Layer template
 //  *
