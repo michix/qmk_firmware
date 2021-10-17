@@ -282,7 +282,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_HANDS_DOWN] = LAYOUT(
       KC_ESC, KC_Q, KC_C, KC_H, KC_P, KC_V,                            /* split */ KC_K, KC_Y, KC_O, KC_J, KC_SLSH, KC_NO,
       KC_Q, HOME_HD_R, HOME_HD_S, HOME_HD_N, HOME_HD_T, KC_G,  /* split */ KC_W, HOME_HD_U, HOME_HD_E, HOME_HD_I, HOME_HD_A, KC_SLSH,
-      _______, KC_X, KC_M, KC_L, HOME_HD_D, KC_B, KC_ESC, DF(_QWERTY), /* split */ _______, KC_TAB, KC_Z, HOME_HD_F, KC_QUOT, KC_COMM, KC_DOT, _______,
+      _______, KC_X, KC_M, KC_L, HOME_HD_D, KC_B, KC_ESC, DF(_QWERTY), /* split */ _______, KC_TAB, KC_Z, HOME_HD_F, KC_SCLN, KC_COMM, KC_DOT, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
       KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
