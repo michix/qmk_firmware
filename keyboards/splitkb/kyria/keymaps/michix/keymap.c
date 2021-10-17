@@ -278,6 +278,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |Layr2 |Layr4 | ESC  |  | TAB  |Layr3 |Layr1 |Mute  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
+    // See http://www.keyboard-layout-editor.com/#/gists/ccde36fea8e8641760bf8b8f2532698e
     [_HANDS_DOWN] = LAYOUT(
       KC_ESC, KC_Q, KC_C, KC_H, KC_P, KC_V,                            /* split */ KC_K, KC_Y, KC_O, KC_J, KC_SLSH, KC_NO,
       KC_Q, HOME_HD_R, HOME_HD_S, HOME_HD_N, HOME_HD_T, KC_G,  /* split */ KC_W, HOME_HD_U, HOME_HD_E, HOME_HD_I, HOME_HD_A, KC_SLSH,
