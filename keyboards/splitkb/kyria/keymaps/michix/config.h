@@ -94,10 +94,10 @@
 #define HOME_CM_I LALT_T(KC_I)
 #define HOME_CM_O RSFT_T(KC_O)
 #define HOME_CM_H RALT_T(KC_H)
-#define HOME_HD_U LSFT_T(KC_U)
-#define HOME_HD_E LALT_T(KC_E)
-#define HOME_HD_I LGUI_T(KC_I)
-#define HOME_HD_A LCTL_T(KC_A)
+#define HOME_HD_U RCTL_T(KC_U)
+#define HOME_HD_E RGUI_T(KC_E)
+#define HOME_HD_I LALT_T(KC_I)
+#define HOME_HD_A RSFT_T(KC_A)
 #define HOME_HD_F RALT_T(KC_F)
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
