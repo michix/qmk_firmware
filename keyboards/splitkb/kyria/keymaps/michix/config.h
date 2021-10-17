@@ -16,19 +16,27 @@
 
 #pragma once
 
-#ifdef OLED_DRIVER_ENABLE
+//Save space: https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
+
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif // !NO_DEBUG
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif // !NO_PRINT
+
+#ifdef OLED_ENABLE
   #define OLED_DISPLAY_128X64
 #endif
 
 #ifdef RGBLIGHT_ENABLE
+  //#define RGBLIGHT_ANIMATIONS
   #define RGBLIGHT_EFFECT_BREATHING
   #define RGBLIGHT_HUE_STEP 17
   #define RGBLIGHT_SAT_STEP 17
   #define RGBLIGHT_VAL_STEP 17
   #define RGBLIGHT_LIMIT_VAL 90
   #define RGBLIGHT_LAYERS
-  //#define RGBLIGHT_ANIMATIONS
-  #define RGBLIGHT_EFFECT_BREATHING
 #endif
 
 #define EE_HANDS
@@ -76,4 +84,5 @@
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT
-#define NO_USB_STARTUP_CHECK
+// The following makes the keyboard unresponsive...
+//#define NO_USB_STARTUP_CHECK
