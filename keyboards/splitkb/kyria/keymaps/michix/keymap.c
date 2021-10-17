@@ -309,9 +309,6 @@ static void render_status(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-            oled_write_P(PSTR("Default\n"), false);
-            break;
         case _LAYER1:
             oled_write_P(PSTR("Symbols\n"), false);
             break;
@@ -328,7 +325,18 @@ static void render_status(void) {
             oled_write_P(PSTR("Colemak DH\n"), false);
             break;
         default:
-            oled_write_P(PSTR("Undefined\n"), false);
+            switch (biton32(default_layer_state)) {
+                case _QWERTY:
+                    oled_write_P(PSTR("Default\n"), false);
+                    break;
+                case _COLEMAK_DH:
+                    oled_write_P(PSTR("Colemak DH\n"), false);
+                    break;
+                default:
+                    oled_write_P(PSTR("Undefined\n"), false);
+                    break;
+            }
+            break;
     }
 
     // Host Keyboard LED Status
