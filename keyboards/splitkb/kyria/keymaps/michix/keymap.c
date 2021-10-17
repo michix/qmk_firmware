@@ -19,17 +19,20 @@
 enum combo_events {
   CB_COPY,
   CB_PASTE,
-  CB_TAB
+  CB_TAB,
+  CB_ESC
 };
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_W, KC_R, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
   [CB_PASTE] = COMBO_ACTION(paste_combo),
-  [CB_TAB] = COMBO_ACTION(tab_combo)
+  [CB_TAB] = COMBO_ACTION(tab_combo),
+  [CB_ESC] = COMBO_ACTION(esc_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -49,17 +52,22 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         tap_code16(KC_TAB);
       }
       break;
+    case CB_ESC:
+      if (pressed) {
+        tap_code16(KC_ESC);
+      }
+      break;
   }
 }
 
 /* Tap dancing */
-enum {
-    TD_Q_ESC
-};
+/*enum {*/
+    /*TD_Q_ESC*/
+/*};*/
 
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC)
-};
+/*qk_tap_dance_action_t tap_dance_actions[] = {*/
+    /*[TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC)*/
+/*};*/
 
 /* Layer color effects */
 enum layers {
@@ -71,6 +79,9 @@ enum layers {
     _LAYER3,
     _LAYER4
 };
+
+// Always use Combos from QWERTY layer
+#define COMBO_ONLY_FROM_LAYER _QWERTY
 
 void keyboard_post_init_user(void) {
     rgblight_sethsv(HSV_GREEN);
@@ -139,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
-      TD(TD_Q_ESC), HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
+      KC_Q, HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
       _______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
@@ -244,7 +255,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_COLEMAK_DH] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_F, KC_P, KC_B,                            /* split */ KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_NO,
-      TD(TD_Q_ESC), HOME_CM_A, HOME_CM_R, HOME_CM_S, HOME_CM_T, KC_G,  /* split */ KC_M, HOME_CM_N, HOME_CM_E, HOME_CM_I, HOME_CM_O, KC_SCLN,
+      KC_Q, HOME_CM_A, HOME_CM_R, HOME_CM_S, HOME_CM_T, KC_G,  /* split */ KC_M, HOME_CM_N, HOME_CM_E, HOME_CM_I, HOME_CM_O, KC_SCLN,
       _______, KC_Z, KC_X, KC_C, HOME_CM_D, KC_V, KC_ESC, DF(_HANDS_DOWN), /* split */ _______, KC_TAB, KC_K, HOME_CM_H, KC_COMM, KC_DOT, KC_SLSH, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
@@ -269,7 +280,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_HANDS_DOWN] = LAYOUT(
       KC_ESC, KC_Q, KC_C, KC_H, KC_P, KC_V,                            /* split */ KC_K, KC_Y, KC_O, KC_J, KC_SLSH, KC_NO,
-      TD(TD_Q_ESC), HOME_HD_R, HOME_HD_S, HOME_HD_N, HOME_HD_T, KC_G,  /* split */ KC_W, HOME_HD_U, HOME_HD_E, HOME_HD_I, HOME_HD_A, KC_SLSH,
+      KC_Q, HOME_HD_R, HOME_HD_S, HOME_HD_N, HOME_HD_T, KC_G,  /* split */ KC_W, HOME_HD_U, HOME_HD_E, HOME_HD_I, HOME_HD_A, KC_SLSH,
       _______, KC_X, KC_M, KC_L, HOME_HD_D, KC_B, KC_ESC, DF(_QWERTY), /* split */ _______, KC_TAB, KC_Z, HOME_HD_F, KC_QUOT, KC_COMM, KC_DOT, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
