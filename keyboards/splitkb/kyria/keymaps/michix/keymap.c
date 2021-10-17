@@ -65,6 +65,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 enum layers {
     _QWERTY = 0,
     _COLEMAK_DH,
+    _HANDS_DOWN,
     _LAYER1,
     _LAYER2,
     _LAYER3,
@@ -102,6 +103,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
                     break;
                 case _COLEMAK_DH:
                     rgblight_sethsv(HSV_YELLOW);
+                    rgblight_mode(RGBLIGHT_MODE_BREATHING);
+                    break;
+                case _HANDS_DOWN:
+                    rgblight_sethsv(HSV_CYAN);
                     rgblight_mode(RGBLIGHT_MODE_BREATHING);
                     break;
                 default:
@@ -238,9 +243,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_COLEMAK_DH] = LAYOUT(
-      KC_ESC, KC_Q, KC_W, KC_F, KC_P, KC_B,               KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_NO,
-      TD(TD_Q_ESC), HOME_CM_A, HOME_CM_R, HOME_CM_S, HOME_CM_T, KC_G,     KC_M, HOME_CM_N, HOME_CM_E, HOME_CM_I, HOME_CM_O, KC_SCLN,
-      _______, KC_Z, KC_X, KC_C, HOME_CM_D, KC_V, KC_ESC, DF(_QWERTY), _______, KC_TAB, KC_K, HOME_CM_H, KC_COMM, KC_DOT, KC_SLSH, _______,
+      KC_ESC, KC_Q, KC_W, KC_F, KC_P, KC_B,                            /* split */ KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_NO,
+      TD(TD_Q_ESC), HOME_CM_A, HOME_CM_R, HOME_CM_S, HOME_CM_T, KC_G,  /* split */ KC_M, HOME_CM_N, HOME_CM_E, HOME_CM_I, HOME_CM_O, KC_SCLN,
+      _______, KC_Z, KC_X, KC_C, HOME_CM_D, KC_V, KC_ESC, DF(_HANDS_DOWN), /* split */ _______, KC_TAB, KC_K, HOME_CM_H, KC_COMM, KC_DOT, KC_SLSH, _______,
+
+      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
+      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+    ),
+/*
+ * Base Layer: HANDS DOWN
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |  ESC   |   Q  |   C  |   H  |   P  |   V  |                              |   K  |   Y  |   O  |   J  | /  ? |  NO    |
+ * |        |    <TAB>    |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |   Q    |   R  |   S  |  N   |   T  |   G  |                              |   W  |   U  |   E  |   I  |  A   | /  ?   |
+ * | 2:ESC  |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |   X  |   M  |   L  |   D  |   B  | ESC  |QWERTY|  |      | TAB  |   Z  |   F  | '  " | , <  | . >  |        |
+ * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      | ESC  |Space |Enter |      |  |      |Del   |Backsp|Teams |      |
+ *                        |      |      |Layr2 |Layr4 | ESC  |  | TAB  |Layr3 |Layr1 |Mute  |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_HANDS_DOWN] = LAYOUT(
+      KC_ESC, KC_Q, KC_C, KC_H, KC_P, KC_V,                            /* split */ KC_K, KC_Y, KC_O, KC_J, KC_SLSH, KC_NO,
+      TD(TD_Q_ESC), HOME_HD_R, HOME_HD_S, HOME_HD_N, HOME_HD_T, KC_G,  /* split */ KC_W, HOME_HD_U, HOME_HD_E, HOME_HD_I, HOME_HD_A, KC_SLSH,
+      _______, KC_X, KC_M, KC_L, HOME_HD_D, KC_B, KC_ESC, DF(_QWERTY), /* split */ _______, KC_TAB, KC_Z, HOME_HD_F, KC_QUOT, KC_COMM, KC_DOT, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
       KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
@@ -310,8 +340,8 @@ static void render_status(void) {
         case _LAYER4:
             oled_write_P(PSTR("Media/Mouse\n"), false);
             break;
-        case _COLEMAK_DH:
-            oled_write_P(PSTR("Colemak DH\n"), false);
+        case _HANDS_DOWN:
+            oled_write_P(PSTR("Hands Down\n"), false);
             break;
         default:
             switch (biton32(default_layer_state)) {
@@ -320,6 +350,9 @@ static void render_status(void) {
                     break;
                 case _COLEMAK_DH:
                     oled_write_P(PSTR("Colemak DH\n"), false);
+                    break;
+                case _HANDS_DOWN:
+                    oled_write_P(PSTR("Hands Down\n"), false);
                     break;
                 default:
                     oled_write_P(PSTR("Undefined\n"), false);
