@@ -20,19 +20,22 @@ enum combo_events {
   CB_COPY,
   CB_PASTE,
   CB_TAB,
-  CB_ESC
+  CB_ESC,
+  CB_CAPSLOCK
 };
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_W, KC_R, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM capslock_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
   [CB_PASTE] = COMBO_ACTION(paste_combo),
   [CB_TAB] = COMBO_ACTION(tab_combo),
-  [CB_ESC] = COMBO_ACTION(esc_combo)
+  [CB_ESC] = COMBO_ACTION(esc_combo),
+  [CB_CAPSLOCK] = COMBO_ACTION(capslock_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -55,6 +58,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_ESC:
       if (pressed) {
         tap_code16(KC_ESC);
+      }
+      break;
+    case CB_CAPSLOCK:
+      if (pressed) {
+        tap_code16(KC_CAPSLOCK);
       }
       break;
   }
