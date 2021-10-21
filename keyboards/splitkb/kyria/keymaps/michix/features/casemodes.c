@@ -141,7 +141,7 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
             case KC_BSPC:
                 // If mod chording disable the mods
                 if (record->event.pressed && (get_mods() != 0)) {
-                    return true;
+                    return false;
                 }
                 break;
             default:
