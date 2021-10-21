@@ -58,16 +58,15 @@
 #define COMBO_TERM 300
 
 // Left-hand home row mods
-#define HOME_A LSFT_T(KC_A)
-#define HOME_Z LSFT_T(KC_Z)
+#define HOME_A LGUI_T(KC_A)
 #define HOME_S LALT_T(KC_S)
-#define HOME_D LGUI_T(KC_D)
+#define HOME_D LSFT_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
+#define HOME_V RALT_T(KC_V)
 #define HOME2_A KC_LCBR
 #define HOME2_S LALT_T(KC_LBRC)
 #define HOME2_D LGUI_T(KC_RBRC)
 #define HOME2_F KC_RCBR
-#define HOME_V RALT_T(KC_V)
 #define HOME_CM_A LSFT_T(KC_A)
 #define HOME_CM_R LALT_T(KC_R)
 #define HOME_CM_S LGUI_T(KC_S)
@@ -81,15 +80,14 @@
 
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)
-#define HOME_K RGUI_T(KC_K)
+#define HOME_K RSFT_T(KC_K)
 #define HOME_L LALT_T(KC_L)
-#define HOME_SCLN RSFT_T(KC_SCLN)
-#define HOME_SLSH RSFT_T(KC_SLSH)
+#define HOME_SCLN RGUI_T(KC_SCLN)
+#define HOME_M RALT_T(KC_M)
 #define HOME2_J RCTL_T(KC_4)
 #define HOME2_K RGUI_T(KC_5)
 #define HOME2_L LALT_T(KC_6)
 #define HOME2_SCLN RSFT_T(KC_KP_PLUS)
-#define HOME_M RALT_T(KC_M)
 #define HOME_CM_N RCTL_T(KC_N)
 #define HOME_CM_E RGUI_T(KC_E)
 #define HOME_CM_I LALT_T(KC_I)
