@@ -81,8 +81,8 @@
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)
 #define HOME_K RSFT_T(KC_K)
-#define HOME_L LGUI_T(KC_L)
-#define HOME_SCLN RALT_T(KC_SCLN)
+#define HOME_L RGUI_T(KC_L)
+#define HOME_SCLN LALT_T(KC_SCLN)
 #define HOME_M RALT_T(KC_M)
 #define HOME2_J RCTL_T(KC_4)
 #define HOME2_K RGUI_T(KC_5)
