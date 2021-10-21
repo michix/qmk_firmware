@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "features/casemodes.h"
 
 /* Combos */
 enum combo_events {
@@ -62,7 +63,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       break;
     case CB_CAPSLOCK:
       if (pressed) {
-        tap_code16(KC_CAPSLOCK);
+        toggle_caps_word();
       }
       break;
   }
@@ -76,6 +77,15 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 /*qk_tap_dance_action_t tap_dance_actions[] = {*/
     /*[TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC)*/
 /*};*/
+
+/*https://github.com/andrewjrae/kyria-keymap*/
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // Process case modes
+    if (!process_case_modes(keycode, record)) {
+        return false;
+    }
+    return true;
+}
 
 /* Layer color effects */
 enum layers {
@@ -385,6 +395,7 @@ static void render_status(void) {
     uint8_t led_usb_state = host_keyboard_leds();
     /*oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK) ? PSTR("NUMLCK ") : PSTR("       "), false);*/
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
+    oled_write_P(caps_word_enabled() ? PSTR("CAPWRD ") : PSTR("       "), false);
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
