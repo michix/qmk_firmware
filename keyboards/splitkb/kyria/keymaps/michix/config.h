@@ -58,8 +58,8 @@
 #define COMBO_TERM 300
 
 // Left-hand home row mods
-#define HOME_A LGUI_T(KC_A)
-#define HOME_S LALT_T(KC_S)
+#define HOME_A LALT_T(KC_A)
+#define HOME_S LGUI_T(KC_S)
 #define HOME_D LSFT_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
 #define HOME_V RALT_T(KC_V)
@@ -81,8 +81,8 @@
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)
 #define HOME_K RSFT_T(KC_K)
-#define HOME_L LALT_T(KC_L)
-#define HOME_SCLN RGUI_T(KC_SCLN)
+#define HOME_L LGUI_T(KC_L)
+#define HOME_SCLN RALT_T(KC_SCLN)
 #define HOME_M RALT_T(KC_M)
 #define HOME2_J RCTL_T(KC_4)
 #define HOME2_K RGUI_T(KC_5)
