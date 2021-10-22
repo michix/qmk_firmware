@@ -65,7 +65,7 @@
 #define HOME_V RALT_T(KC_V)
 #define HOME2_A KC_LCBR
 #define HOME2_S LALT_T(KC_LBRC)
-#define HOME2_D LGUI_T(KC_RBRC)
+#define HOME2_D LSFT_T(KC_RBRC)
 #define HOME2_F KC_RCBR
 #define HOME_CM_A LSFT_T(KC_A)
 #define HOME_CM_R LALT_T(KC_R)
@@ -85,7 +85,7 @@
 #define HOME_SCLN LALT_T(KC_SCLN)
 #define HOME_M RALT_T(KC_M)
 #define HOME2_J RCTL_T(KC_4)
-#define HOME2_K RGUI_T(KC_5)
+#define HOME2_K RSFT_T(KC_5)
 #define HOME2_L LALT_T(KC_6)
 #define HOME2_SCLN RSFT_T(KC_KP_PLUS)
 #define HOME_CM_N RCTL_T(KC_N)
