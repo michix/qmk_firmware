@@ -77,6 +77,11 @@
 #define HOME_HD_N LGUI_T(KC_N)
 #define HOME_HD_T LCTL_T(KC_T)
 #define HOME_HD_D RALT_T(KC_D)
+#define HOME_HDN_R LSFT_T(KC_R)
+#define HOME_HDN_S LALT_T(KC_S)
+#define HOME_HDN_N LGUI_T(KC_N)
+#define HOME_HDN_T LCTL_T(KC_T)
+#define HOME_HDN_D RALT_T(KC_D)
 
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)
@@ -98,6 +103,11 @@
 #define HOME_HD_I LALT_T(KC_I)
 #define HOME_HD_A RSFT_T(KC_A)
 #define HOME_HD_F RALT_T(KC_F)
+#define HOME_HDN_A RCTL_T(KC_A)
+#define HOME_HDN_E RGUI_T(KC_E)
+#define HOME_HDN_I LALT_T(KC_I)
+#define HOME_HDN_H RSFT_T(KC_H)
+#define HOME_HDN_U RALT_T(KC_U)
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT

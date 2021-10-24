@@ -92,6 +92,7 @@ enum layers {
     _QWERTY = 0,
     _COLEMAK_DH,
     _HANDS_DOWN,
+    _HANDS_DOWN_NEU,
     _LAYER1,
     _LAYER2,
     _LAYER3,
@@ -136,6 +137,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
                     break;
                 case _HANDS_DOWN:
                     rgblight_sethsv(HSV_CYAN);
+                    rgblight_mode(RGBLIGHT_MODE_BREATHING);
+                    break;
+                case _HANDS_DOWN_NEU:
+                    rgblight_sethsv(HSV_WHITE);
                     rgblight_mode(RGBLIGHT_MODE_BREATHING);
                     break;
                 default:
@@ -300,7 +305,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_HANDS_DOWN] = LAYOUT(
       KC_ESC, KC_Q, KC_C, KC_H, KC_P, KC_V,                            /* split */ KC_K, KC_Y, KC_O, KC_J, KC_SLSH, KC_NO,
       KC_Q, HOME_HD_R, HOME_HD_S, HOME_HD_N, HOME_HD_T, KC_G,  /* split */ KC_W, HOME_HD_U, HOME_HD_E, HOME_HD_I, HOME_HD_A, KC_SLSH,
-      _______, KC_X, KC_M, KC_L, HOME_HD_D, KC_B, KC_ESC, DF(_QWERTY), /* split */ _______, KC_TAB, KC_Z, HOME_HD_F, KC_SCLN, KC_COMM, KC_DOT, _______,
+      _______, KC_X, KC_M, KC_L, HOME_HD_D, KC_B, KC_ESC, DF(_HANDS_DOWN_NEU), /* split */ _______, KC_TAB, KC_Z, HOME_HD_F, KC_SCLN, KC_COMM, KC_DOT, _______,
+
+      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
+      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+    ),
+/*
+ * Base Layer: HANDS DOWN Neu
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |      |   F  |   M  |   P  |   V  |                              |   /  |   .  |   Q  |   ;  |      |        |
+ * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |   W    |   R  |   S  |  N   |   T  |   G  |                              |   ,  |   A  |   E  |   I  |  H   |   J    |
+ * | 2:ESC  |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |   X  |   C  |   L  |   D  |   B  | ESC  |QWERTY|  |      | TAB  |   Z  |   U  |   O  |   Y  |  K   |        |
+ * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      | ESC  |Space |Enter |      |  |      |Del   |Backsp|Teams |      |
+ *                        |      |      |Layr2 |Layr4 | ESC  |  | TAB  |Layr3 |Layr1 |Mute  |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    // See http://www.keyboard-layout-editor.com/#/gists/ccde36fea8e8641760bf8b8f2532698e
+    [_HANDS_DOWN_NEU] = LAYOUT(
+      KC_NO, KC_NO, KC_F, KC_M, KC_P, KC_V,                /* split */ KC_SLSH, KC_DOT, KC_Q, KC_SCLN, KC_NO, KC_NO,
+      KC_W, HOME_HDN_R, HOME_HDN_S, HOME_HDN_N, HOME_HDN_T, KC_G,  /* split */ KC_COMM, HOME_HDN_A, HOME_HDN_E, HOME_HDN_I, HOME_HDN_H, KC_J,
+      KC_NO, KC_X, KC_C, KC_L, HOME_HDN_D, KC_B, KC_ESC, DF(_QWERTY), /* split */ KC_NO, KC_TAB, KC_Z, HOME_HDN_U, KC_O, KC_Y, KC_K, KC_NO,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
       KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
@@ -373,6 +404,9 @@ static void render_status(void) {
         case _HANDS_DOWN:
             oled_write_P(PSTR("Hands Down\n"), false);
             break;
+        case _HANDS_DOWN_NEU:
+            oled_write_P(PSTR("Hands Down Neu\n"), false);
+            break;
         default:
             switch (biton32(default_layer_state)) {
                 case _QWERTY:
@@ -383,6 +417,9 @@ static void render_status(void) {
                     break;
                 case _HANDS_DOWN:
                     oled_write_P(PSTR("Hands Down\n"), false);
+                    break;
+                case _HANDS_DOWN_NEU:
+                    oled_write_P(PSTR("Hands Down Neu\n"), false);
                     break;
                 default:
                     oled_write_P(PSTR("Undefined\n"), false);
