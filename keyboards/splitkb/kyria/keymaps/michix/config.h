@@ -55,7 +55,7 @@
 //#define HOLD_ON_OTHER_KEY_PRESS
 
 #define COMBO_COUNT 5
-#define COMBO_TERM 300
+#define COMBO_TERM 30
 
 // Left-hand home row mods
 #define HOME_A LALT_T(KC_A)
