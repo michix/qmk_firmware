@@ -54,7 +54,7 @@
 #define PERMISSIVE_HOLD
 //#define HOLD_ON_OTHER_KEY_PRESS
 
-#define COMBO_COUNT 11
+#define COMBO_COUNT 12
 #define COMBO_TERM 30
 
 // Left-hand home row mods
