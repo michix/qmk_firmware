@@ -29,8 +29,11 @@ enum combo_events {
   CB_QUOT,
   CB_DQUOT,
   CB_BTICK,
-  CB_PIPE
+  CB_PIPE,
+  CB_BSLASH,
+  COMBO_LENGTH
 };
+uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
@@ -44,8 +47,9 @@ const uint16_t PROGMEM quot_combo[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM dquot_combo[] = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM btick_combo[] = {KC_C, HOME_V, COMBO_END};
 const uint16_t PROGMEM pipe_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
+combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
   [CB_PASTE] = COMBO_ACTION(paste_combo),
   [CB_TAB] = COMBO_ACTION(tab_combo),
@@ -57,7 +61,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [CB_QUOT] = COMBO_ACTION(quot_combo),
   [CB_DQUOT] = COMBO_ACTION(dquot_combo),
   [CB_BTICK] = COMBO_ACTION(btick_combo),
-  [CB_PIPE] = COMBO_ACTION(pipe_combo)
+  [CB_PIPE] = COMBO_ACTION(pipe_combo),
+  [CB_BSLASH] = COMBO_ACTION(bslash_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -120,6 +125,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_PIPE:
       if (pressed) {
         tap_code16(KC_PIPE);
+      }
+      break;
+    case CB_BSLASH:
+      if (pressed) {
+        tap_code16(KC_BSLS);
       }
       break;
   }
