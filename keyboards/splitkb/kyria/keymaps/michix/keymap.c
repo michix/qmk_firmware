@@ -39,10 +39,10 @@ const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM capslock_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM minus_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM equals_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM underscore_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM underscore_combo[] = {HOME_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM quot_combo[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM dquot_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM btick_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM btick_combo[] = {KC_C, HOME_V, COMBO_END};
 const uint16_t PROGMEM pipe_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
