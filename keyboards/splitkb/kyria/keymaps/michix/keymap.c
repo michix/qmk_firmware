@@ -27,6 +27,7 @@ enum combo_events {
   CB_UNDERSCORE,
   CB_QUOT,
   CB_DQUOT,
+  CB_BTICK,
   CB_PIPE
 };
 
@@ -37,8 +38,9 @@ const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM capslock_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM minus_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM underscore_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM quot_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM dquot_combo[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM quot_combo[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM dquot_combo[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM btick_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM pipe_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -51,6 +53,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [CB_UNDERSCORE] = COMBO_ACTION(underscore_combo),
   [CB_QUOT] = COMBO_ACTION(quot_combo),
   [CB_DQUOT] = COMBO_ACTION(dquot_combo),
+  [CB_BTICK] = COMBO_ACTION(btick_combo),
   [CB_PIPE] = COMBO_ACTION(pipe_combo)
 };
 
@@ -99,6 +102,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_DQUOT:
       if (pressed) {
         tap_code16(KC_DQUO);
+      }
+      break;
+    case CB_BTICK:
+      if (pressed) {
+        tap_code16(KC_GRV);
       }
       break;
     case CB_PIPE:
