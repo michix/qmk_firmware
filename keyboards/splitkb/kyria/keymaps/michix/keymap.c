@@ -19,6 +19,7 @@
 /* Combos */
 enum combo_events {
   CB_COPY,
+  CB_CUT,
   CB_PASTE,
   CB_TAB,
   CB_ESC,
@@ -36,6 +37,7 @@ enum combo_events {
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
+const uint16_t PROGMEM cut_combo[] = {KC_Z, KC_X, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_W, KC_R, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
@@ -51,6 +53,7 @@ const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
+  [CB_CUT] = COMBO_ACTION(cut_combo),
   [CB_PASTE] = COMBO_ACTION(paste_combo),
   [CB_TAB] = COMBO_ACTION(tab_combo),
   [CB_ESC] = COMBO_ACTION(esc_combo),
@@ -70,6 +73,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_COPY:
       if (pressed) {
         tap_code16(LCTL(KC_C));
+      }
+      break;
+    case CB_CUT:
+      if (pressed) {
+        tap_code16(LCTL(KC_X));
       }
       break;
     case CB_PASTE:
