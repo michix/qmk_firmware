@@ -15,6 +15,7 @@
  */
 #include QMK_KEYBOARD_H
 #include "features/casemodes.h"
+#include <keymap_german.h>
 
 /* Combos */
 enum combo_events {
@@ -30,6 +31,7 @@ enum combo_events {
   CB_QUOT,
   CB_DQUOT,
   CB_BTICK,
+  CB_EXCL,
   CB_PIPE,
   CB_BSLASH,
   CB_BSPC,
@@ -49,9 +51,10 @@ const uint16_t PROGMEM underscore_combo[] = {HOME_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM quot_combo[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM dquot_combo[] = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM btick_combo[] = {KC_C, HOME_V, COMBO_END};
-const uint16_t PROGMEM pipe_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM excl_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM pipe_combo[] = {HOME_M, KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
-const uint16_t PROGMEM bspc_combo[] = {HOME_M, KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
@@ -66,6 +69,7 @@ combo_t key_combos[] = {
   [CB_QUOT] = COMBO_ACTION(quot_combo),
   [CB_DQUOT] = COMBO_ACTION(dquot_combo),
   [CB_BTICK] = COMBO_ACTION(btick_combo),
+  [CB_EXCL] = COMBO_ACTION(excl_combo),
   [CB_PIPE] = COMBO_ACTION(pipe_combo),
   [CB_BSLASH] = COMBO_ACTION(bslash_combo),
   [CB_BSPC] = COMBO_ACTION(bspc_combo),
@@ -133,6 +137,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         tap_code16(KC_GRV);
       }
       break;
+    case CB_EXCL:
+      if (pressed) {
+        tap_code16(KC_EXLM);
+      }
+      break;
     case CB_PIPE:
       if (pressed) {
         tap_code16(KC_PIPE);
@@ -180,6 +189,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 /* Layer color effects */
 enum layers {
     _QWERTY = 0,
+    _DE,
     _COLEMAK_DH,
     _HANDS_DOWN,
     _HANDS_DOWN_NEU,
@@ -269,6 +279,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
       KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
     ),
+ /*
+  * Layer: DE
+  *
+  * ,-------------------------------------------.                              ,-------------------------------------------.
+  * |        |      |      |      |      |      |                              |      |  Ü   |      |  Ö   |      |        |
+  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+  * |        |  Ä   |  ß   |      |      |      |                              |      |      |      |      |      |        |
+  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+  *                        |      |      |      |      |      |  |      |      |      |      |      |
+  *                        |      |      |      |      |      |  |      |      |      |      |      |
+  *                        `----------------------------------'  `----------------------------------'
+  */
+     [_DE] = LAYOUT(
+       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+     ),
 /*
  * Layer1: Symbols
  *
