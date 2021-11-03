@@ -30,6 +30,7 @@
 #endif
 
 #ifdef RGBLIGHT_ENABLE
+  #define RGBLIGHT_LED_MAP {0,1,2,9,8,7,4,3,5,6,19,18,17,10,11,12,15,16,14,13} // Orients Kyria LEDs to a circle around both halves.
   //#define RGBLIGHT_ANIMATIONS
   #define RGBLIGHT_EFFECT_BREATHING
   #define RGBLIGHT_HUE_STEP 17
@@ -52,7 +53,7 @@
 //#define TAPPING_FORCE_HOLD
 
 // Apply the modifier on keys that are tapped during a short hold of a modtap
-#define PERMISSIVE_HOLD
+//#define PERMISSIVE_HOLD
 //#define HOLD_ON_OTHER_KEY_PRESS
 
 #define COMBO_TERM 30
