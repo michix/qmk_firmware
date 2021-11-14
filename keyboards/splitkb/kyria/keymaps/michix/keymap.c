@@ -35,6 +35,8 @@ enum combo_events {
   CB_PIPE,
   CB_BSLASH,
   CB_BSPC,
+  CB_LSHFT,
+  CB_RSHFT,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
@@ -54,6 +56,8 @@ const uint16_t PROGMEM btick_combo[] = {KC_C, HOME_V, COMBO_END};
 const uint16_t PROGMEM excl_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM pipe_combo[] = {HOME_M, KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM lshft_combo[] = {HOME_A, HOME_S, COMBO_END};
+const uint16_t PROGMEM rshft_combo[] = {HOME_L, HOME_SCLN, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
 
 combo_t key_combos[] = {
@@ -72,6 +76,8 @@ combo_t key_combos[] = {
   [CB_EXCL] = COMBO_ACTION(excl_combo),
   [CB_PIPE] = COMBO_ACTION(pipe_combo),
   [CB_BSLASH] = COMBO_ACTION(bslash_combo),
+  [CB_LSHFT] = COMBO_ACTION(lshft_combo),
+  [CB_RSHFT] = COMBO_ACTION(rshft_combo),
   [CB_BSPC] = COMBO_ACTION(bspc_combo),
 };
 
@@ -150,6 +156,16 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_BSLASH:
       if (pressed) {
         tap_code16(KC_BSLS);
+      }
+      break;
+    case CB_LSHFT:
+      if (pressed) {
+          set_oneshot_mods(MOD_BIT(KC_LSHIFT));
+      }
+      break;
+    case CB_RSHFT:
+      if (pressed) {
+          set_oneshot_mods(MOD_BIT(KC_RSHIFT));
       }
       break;
     case CB_BSPC:
