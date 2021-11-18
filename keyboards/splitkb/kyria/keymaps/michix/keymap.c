@@ -229,6 +229,7 @@ enum layers {
 // Always use Combos from QWERTY layer
 #define COMBO_ONLY_FROM_LAYER _QWERTY
 
+#ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
     rgblight_sethsv(HSV_GREEN);
     rgblight_mode(RGBLIGHT_MODE_BREATHING);
@@ -279,6 +280,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
     return state;
 }
+#endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
