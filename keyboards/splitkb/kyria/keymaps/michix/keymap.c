@@ -194,13 +194,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-/*uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {*/
-    /*if( keycode == HOME_D && keycode == HOME_K ) {*/
-        /*return TAPPING_TERM - 50;*/
-    /*} else {*/
-        /*return TAPPING_TERM;*/
-    /*}*/
-/*}*/
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    if( keycode == HOME_D || keycode == HOME_K ) {
+        return TAPPING_TERM - 50;
+    } else {
+        return TAPPING_TERM;
+    }
+}
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
