@@ -596,22 +596,21 @@ void oled_task_user(void) {
 
 #ifdef ENCODER_ENABLE
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        // Volume control
-        if (clockwise) {
-            tap_code(KC_VOLU);
+    /*if (index == 0) {*/
+        /*// Volume control*/
+        /*if (clockwise) {*/
+            /*tap_code(KC_VOLU);*/
+        /*} else {*/
+            /*tap_code(KC_VOLD);*/
+        /*}*/
+    /*}*/
+    /*else if (index == 1) {*/
+        if (! clockwise) {
+            tap_code(KC_MS_WH_DOWN);
         } else {
-            tap_code(KC_VOLD);
+            tap_code(KC_MS_WH_UP);
         }
-    }
-    else if (index == 1) {
-        // Page up/Page down
-        if (clockwise) {
-            tap_code(KC_DOWN);
-        } else {
-            tap_code(KC_UP);
-        }
-    }
-    return true;
+    /*}*/
+    return false;
 }
 #endif
