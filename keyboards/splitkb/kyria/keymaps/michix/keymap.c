@@ -195,17 +195,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    if( keycode == HOME_D || keycode == HOME_K ) {
-        return TAPPING_TERM - 50;
-    } else {
+    /*if( keycode == HOME_D || keycode == HOME_K ) {*/
+        /*return TAPPING_TERM - 50;*/
+    /*} else {*/
         return TAPPING_TERM;
-    }
+    /*}*/
 }
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_D:
         case HOME_K:
+        case HOME_V:
+        case HOME_M:
             // Immediately select the hold action when another key is pressed.
             return true;
         default:
@@ -354,9 +356,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |   1  |  2   |  3   |  4   |  5   |                              |  6   |  7   |  8   |  9   |  0   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |   1    |  {   |  [   |  ]   |  }   |  =   |                              |  -   |  4   |  5   |  6   |  +   |   0    |
+ * |   1    |  (   |  [   |  ]   |  )   |  =   |                              |  -   |  4   |  5   |  6   |  +   |   0    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  (   |  <   |  >   |  )   |  |   |      |      |  |      | '"   |  .   |  1   |  2   |  3   |  /   |        |
+ * |        |  {   |  <   |  >   |  }   |  |   |      |      |  |      | '"   |  .   |  1   |  2   |  3   |  /   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |Enter |  0   |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -365,7 +367,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LAYER2] = LAYOUT(
       _______, KC_1, KC_2,  KC_3, KC_4,  KC_5,                                                  KC_6, KC_7, KC_8, KC_9,  KC_0, _______,
       KC_1, HOME2_A, HOME2_S, HOME2_D, HOME2_F, KC_EQUAL,                                     KC_MINS, HOME2_J, HOME2_K,  HOME2_L, HOME2_SCLN, KC_0,
-      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_PIPE, _______, _______, _______, KC_QUOT, KC_DOT, KC_1,  KC_2, KC_3, KC_SLSH, _______,
+      _______, KC_LCBR, LSFT(KC_COMM), LSFT(KC_DOT), KC_RCBR, KC_PIPE, _______, _______, _______, KC_QUOT, KC_DOT, KC_1,  KC_2, KC_3, KC_SLSH, _______,
                                  _______, _______, _______, _______, _______,  _______,  KC_ENT, KC_0, _______, _______
     ),
 /*
