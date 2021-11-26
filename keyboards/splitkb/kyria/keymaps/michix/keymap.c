@@ -56,8 +56,8 @@ const uint16_t PROGMEM btick_combo[] = {KC_C, HOME_V, COMBO_END};
 const uint16_t PROGMEM excl_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM pipe_combo[] = {HOME_M, KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
-const uint16_t PROGMEM lshft_combo[] = {KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM rshft_combo[] = {KC_P, KC_O, COMBO_END};
+const uint16_t PROGMEM lshft_combo[] = {HOME_D, HOME_F, COMBO_END};
+const uint16_t PROGMEM rshft_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
 
 combo_t key_combos[] = {
