@@ -65,10 +65,12 @@
 #define HOME_D LSFT_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
 #define HOME_V RALT_T(KC_V)
+// Home Row Mod noch working with shifted 9
 #define HOME2_A KC_LPRN
 #define HOME2_S LGUI_T(KC_LBRC)
 #define HOME2_D LSFT_T(KC_RBRC)
-#define HOME2_F LCTL_T(KC_RPRN)
+// Home Row Mod noch working with shifted 0
+#define HOME2_F KC_RPRN
 #define HOME_CM_A LSFT_T(KC_A)
 #define HOME_CM_R LALT_T(KC_R)
 #define HOME_CM_S LGUI_T(KC_S)
