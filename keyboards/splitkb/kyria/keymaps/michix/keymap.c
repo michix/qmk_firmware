@@ -17,6 +17,19 @@
 #include "features/casemodes.h"
 #include <keymap_german.h>
 
+/* Layer color effects */
+enum layers {
+    _QWERTY = 0,
+    _DE,
+    _COLEMAK_DH,
+    _HANDS_DOWN,
+    _HANDS_DOWN_NEU,
+    _LAYER1,
+    _LAYER2,
+    _LAYER3,
+    _LAYER4
+};
+
 /* Combos */
 enum combo_events {
   CB_COPY,
@@ -231,18 +244,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
-/* Layer color effects */
-enum layers {
-    _QWERTY = 0,
-    _DE,
-    _COLEMAK_DH,
-    _HANDS_DOWN,
-    _HANDS_DOWN_NEU,
-    _LAYER1,
-    _LAYER2,
-    _LAYER3,
-    _LAYER4
-};
 
 // Always use Combos from QWERTY layer
 #define COMBO_ONLY_FROM_LAYER _QWERTY
@@ -312,7 +313,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Layer4 |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  | ESC  |COLEMA|  |      | TAB  |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
- * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * |        |      |Layer3|      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      | ESC  |Space |Space |      |  |      |Backsp|Backsp|Teams |      |
  *                        |      |      |Layr2 |Layr2 | ESC  |  | TAB  |Layr1 |Layr1 |Mute  |      |
@@ -321,7 +322,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
       LT(_LAYER4, KC_Q), HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
-      _______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
+      _______, KC_Z, LT(_LAYER3, KC_X), KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER2, KC_SPC), KC_ESC,
       KC_TAB, LT(_LAYER1, KC_BSPACE), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
@@ -390,20 +391,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Layer3: Function Keys
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
+ * |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  | F12  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  F1    |  F11 |  F12 |      |      |PRINT |                              |  -   |  F4  |  F5  |  F6  |      |  F10   |
+ * |  F1    |  F11 |  F12 |      |      |PRINT |                              |  -   |  F4  |  F5  |  F6  | F11  |  F12   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |      |  |      |      |      |  F1  |  F2  |  F3  |      |        |
+ * |        |      |      |      |      |      |      |      |  |      |      |      |  F1  |  F2  |  F3  | F10  |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_LAYER3] = LAYOUT(
-      _______, KC_F1, KC_F2,  KC_F3, KC_F4,  KC_F5,                                                  KC_F6, KC_F7, KC_F8, KC_F9,  KC_F10, _______,
-      KC_F1, KC_F11, KC_F12, _______, _______, KC_PSCREEN,                      _______, KC_F4, KC_F5,  KC_F6, _______,   KC_F10,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F1,  KC_F2, KC_F3, _______, _______,
+      _______, KC_F1, KC_F2,  KC_F3, KC_F4,  KC_F5,                                                  KC_F6, KC_F7, KC_F8, KC_F9,  KC_F12, _______,
+      KC_F1, KC_F11, KC_F12, _______, _______, KC_PSCREEN,                      _______, KC_F4, KC_F5,  KC_F6, KC_F11,   KC_F12,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F1,  KC_F2, KC_F3, KC_F10, _______,
                                  _______, _______, _______, _______, _______,  _______,  _______, _______, _______, _______
     ),
 /*
