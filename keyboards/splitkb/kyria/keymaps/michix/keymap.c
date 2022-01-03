@@ -37,6 +37,8 @@ enum combo_events {
   CB_BSPC,
   CB_LSHFT,
   CB_RSHFT,
+  CB_ENTER,
+  CB_DEL,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
@@ -59,6 +61,8 @@ const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM lshft_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM rshft_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {KC_Z, KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM del_combo[] = {KC_COMM, KC_DOT, KC_SLSH, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
@@ -79,6 +83,8 @@ combo_t key_combos[] = {
   [CB_LSHFT] = COMBO_ACTION(lshft_combo),
   [CB_RSHFT] = COMBO_ACTION(rshft_combo),
   [CB_BSPC] = COMBO_ACTION(bspc_combo),
+  [CB_ENTER] = COMBO_ACTION(enter_combo),
+  [CB_DEL] = COMBO_ACTION(del_combo),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -171,6 +177,16 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_BSPC:
       if (pressed) {
         tap_code16(KC_BSPC);
+      }
+      break;
+    case CB_ENTER:
+      if (pressed) {
+        tap_code16(KC_ENT);
+      }
+      break;
+    case CB_DEL:
+      if (pressed) {
+        tap_code16(KC_DEL);
       }
       break;
   }
@@ -340,7 +356,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  (   |  <   |  >   |  )   |  `   |      |      |  |      |      | HOME |PGDOWN|PGUP  | END  |  \   |   NO   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |ENTER |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -348,7 +364,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN, KC_BSLS,
       KC_EXLM, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, KC_QUOT,                                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_RSHIFT,   KC_BSLS,
       _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_GRV, _______, _______, _______, _______, KC_HOME, KC_PGDOWN,  KC_PGUP, KC_END,   KC_BSLS, KC_NO,
-                                 _______, _______, _______, _______, _______,  _______,  _______, _______, _______, _______
+                                 _______, _______, KC_ENT, _______, _______,  _______,  _______, _______, _______, _______
     ),
 /*
  * Layer2: Numbers
