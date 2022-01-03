@@ -195,11 +195,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    /*if( keycode == HOME_D || keycode == HOME_K ) {*/
-        /*return TAPPING_TERM - 50;*/
-    /*} else {*/
-        return TAPPING_TERM;
-    /*}*/
+    switch(keycode) {
+        case HOME_V:
+            return TAPPING_TERM + 100;
+        case HOME_M:
+            return TAPPING_TERM + 100;
+        default:
+            return TAPPING_TERM;
+    }
 }
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
