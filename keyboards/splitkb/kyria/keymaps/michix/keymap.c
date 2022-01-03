@@ -61,8 +61,8 @@ const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM lshft_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM rshft_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
-const uint16_t PROGMEM enter_combo[] = {KC_Z, KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM del_combo[] = {KC_COMM, KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM del_combo[] = {HOME_D, HOME_F, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {HOME_J, HOME_K, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
@@ -309,22 +309,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |    <TAB>    |      |      |      |                              |   Y  |   U  |   I  |   O  |   P  |  NO    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |   Q    |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  P     |
- * | 2:ESC  |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
+ * | Layer4 |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  | ESC  |COLEMA|  |      | TAB  |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
  * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      | ESC  |Space |Enter |      |  |      |Del   |Backsp|Teams |      |
- *                        |      |      |Layr2 |Layr4 | ESC  |  | TAB  |Layr3 |Layr1 |Mute  |      |
+ *                        |      | ESC  |Space |Space |      |  |      |Backsp|Backsp|Teams |      |
+ *                        |      |      |Layr2 |Layr2 | ESC  |  | TAB  |Layr1 |Layr1 |Mute  |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
-      KC_Q, HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
+      LT(_LAYER4, KC_Q), HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
       _______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
 
-      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
-      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER2, KC_SPC), KC_ESC,
+      KC_TAB, LT(_LAYER1, KC_BSPACE), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
     ),
  /*
   * Layer: DE
