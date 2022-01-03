@@ -54,7 +54,6 @@ enum combo_events {
   CB_DEL,
   CB_Q,
   CB_P,
-  CB_EXCL,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
@@ -81,7 +80,6 @@ const uint16_t PROGMEM del_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM q_combo[] = {HOME_A, HOME_S, COMBO_END};
 const uint16_t PROGMEM p_combo[] = {HOME_L, HOME_SCLN, COMBO_END};
-const uint16_t PROGMEM excl_combo[] = {KC_X, KC_X, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
@@ -106,7 +104,6 @@ combo_t key_combos[] = {
   [CB_DEL] = COMBO_ACTION(del_combo),
   [CB_Q] = COMBO_ACTION(q_combo),
   [CB_P] = COMBO_ACTION(p_combo),
-  [CB_EXCL] = COMBO_ACTION(excl_combo),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
