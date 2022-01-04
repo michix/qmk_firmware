@@ -57,8 +57,8 @@ enum combo_events {
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
-const uint16_t PROGMEM cut_combo[] = {KC_Z, KC_X, COMBO_END};
-const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM cut_combo[] = {KC_Z, HOME_X, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = {HOME_X, KC_C, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_W, KC_R, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM capslock_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
@@ -322,7 +322,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
       LT(_LAYER4, KC_Q), HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
-      _______, KC_Z, LT(_LAYER3, KC_X), KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
+      _______, KC_Z, HOME_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER2, KC_SPC), KC_ESC,
       KC_TAB, LT(_LAYER1, KC_BSPACE), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
