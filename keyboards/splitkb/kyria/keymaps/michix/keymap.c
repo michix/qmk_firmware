@@ -52,13 +52,14 @@ enum combo_events {
   CB_RSHFT,
   CB_ENTER,
   CB_DEL,
+  CB_FLAYER,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
-const uint16_t PROGMEM cut_combo[] = {KC_Z, HOME_X, COMBO_END};
-const uint16_t PROGMEM paste_combo[] = {HOME_X, KC_C, COMBO_END};
+const uint16_t PROGMEM cut_combo[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_W, KC_R, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM capslock_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
@@ -76,6 +77,7 @@ const uint16_t PROGMEM rshft_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM del_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {HOME_J, HOME_K, COMBO_END};
+const uint16_t PROGMEM flayer_combo[] = {KC_Z, KC_X, KC_C, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
@@ -98,6 +100,7 @@ combo_t key_combos[] = {
   [CB_BSPC] = COMBO_ACTION(bspc_combo),
   [CB_ENTER] = COMBO_ACTION(enter_combo),
   [CB_DEL] = COMBO_ACTION(del_combo),
+  [CB_FLAYER] = COMBO_ACTION(flayer_combo),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -202,6 +205,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         tap_code16(KC_DEL);
       }
       break;
+    case CB_FLAYER:
+      if (pressed) {
+          set_oneshot_layer(_LAYER3, ONESHOT_START);
+      }
+      break;
   }
 }
 
@@ -219,6 +227,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process case modes
     if (!process_case_modes(keycode, record)) {
         return false;
+    }
+    if (!record->event.pressed) { /* key released */
+        clear_oneshot_layer_state(ONESHOT_PRESSED);
     }
     return true;
 }
@@ -313,7 +324,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Layer4 |LShift|  ALT | GUI  | CTRL |      |                              |      | CTRL |  GUI |  ALT |RShift|        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  | ESC  |COLEMA|  |      | TAB  |   N  |   M  | ,  < | . >  | /  ? | /  ?   |
- * |        |      |Layer3|      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
+ * |        |      |      |      |ALTGR |      |      |      |  |      |      |      |ALTGR |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      | ESC  |Space |Space |      |  |      |Backsp|Backsp|Teams |      |
  *                        |      |      |Layr2 |Layr2 | ESC  |  | TAB  |Layr1 |Layr1 |Mute  |      |
@@ -322,7 +333,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
       KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,               KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
       LT(_LAYER4, KC_Q), HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
-      _______, KC_Z, HOME_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
+      _______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER2, KC_SPC), KC_ESC,
       KC_TAB, LT(_LAYER1, KC_BSPACE), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
@@ -403,7 +414,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_LAYER3] = LAYOUT(
       _______, KC_F1, KC_F2,  KC_F3, KC_F4,  KC_F5,                                                  KC_F6, KC_F7, KC_F8, KC_F9,  KC_F12, _______,
-      KC_F1, KC_F11, KC_F12, _______, _______, KC_PSCREEN,                      _______, KC_F4, KC_F5,  KC_F6, KC_F11,   KC_F12,
+      KC_F1, HOME_A, HOME_S, HOME_D, HOME_F, KC_PSCREEN,                      _______, KC_F4, KC_F5,  KC_F6, KC_F11,   KC_F12,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F1,  KC_F2, KC_F3, KC_F10, _______,
                                  _______, _______, _______, _______, _______,  _______,  _______, _______, _______, _______
     ),

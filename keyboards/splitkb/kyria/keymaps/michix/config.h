@@ -65,7 +65,6 @@
 #define HOME_D LSFT_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
 #define HOME_V RALT_T(KC_V)
-#define HOME_X LT(_LAYER3, KC_X)
 // Home Row Mod noch working with shifted 9
 #define HOME2_A KC_LPRN
 #define HOME2_S LGUI_T(KC_LBRC)
