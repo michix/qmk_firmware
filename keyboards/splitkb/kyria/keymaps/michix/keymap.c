@@ -53,6 +53,10 @@ enum combo_events {
   CB_ENTER,
   CB_DEL,
   CB_FLAYER,
+  CB_LWIN_L,
+  CB_LWIN_R,
+  CB_OSS_L,
+  CB_OSS_R,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
@@ -78,6 +82,10 @@ const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM del_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM flayer_combo[] = {KC_Z, KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM lwin_combo_l[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM lwin_combo_r[] = {KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END};
+const uint16_t PROGMEM oss_combo_l[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM oss_combo_r[] = {KC_K, KC_L, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
@@ -101,6 +109,10 @@ combo_t key_combos[] = {
   [CB_ENTER] = COMBO_ACTION(enter_combo),
   [CB_DEL] = COMBO_ACTION(del_combo),
   [CB_FLAYER] = COMBO_ACTION(flayer_combo),
+  [CB_LWIN_L] = COMBO_ACTION(lwin_combo_l),
+  [CB_LWIN_R] = COMBO_ACTION(lwin_combo_r),
+  [CB_OSS_L] = COMBO_ACTION(oss_combo_l),
+  [CB_OSS_R] = COMBO_ACTION(oss_combo_r),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -182,12 +194,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       break;
     case CB_LSHFT:
       if (pressed) {
-          set_oneshot_mods(MOD_BIT(KC_LSHIFT));
+          set_oneshot_mods(MOD_BIT(KC_LSFT));
       }
       break;
     case CB_RSHFT:
       if (pressed) {
-          set_oneshot_mods(MOD_BIT(KC_RSHIFT));
+          set_oneshot_mods(MOD_BIT(KC_RSFT));
       }
       break;
     case CB_BSPC:
@@ -208,6 +220,24 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_FLAYER:
       if (pressed) {
           set_oneshot_layer(_LAYER3, ONESHOT_START);
+    case CB_LWIN_L:
+      if (pressed) {
+        tap_code16(KC_LEFT_GUI);
+      }
+      break;
+    case CB_LWIN_R:
+      if (pressed) {
+        tap_code16(KC_LEFT_GUI);
+      }
+      break;
+    case CB_OSS_L:
+      if (pressed) {
+        tap_code16(OSM(KC_LSFT));
+      }
+      break;
+    case CB_OSS_R:
+      if (pressed) {
+        tap_code16(OSM(KC_RSFT));
       }
       break;
   }
@@ -235,11 +265,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    /*if( keycode == HOME_D || keycode == HOME_K ) {*/
-        /*return TAPPING_TERM - 50;*/
-    /*} else {*/
-        return TAPPING_TERM;
-    /*}*/
+    switch(keycode) {
+        case HOME_V:
+            return TAPPING_TERM + 100;
+        case HOME_M:
+            return TAPPING_TERM + 100;
+        default:
+            return TAPPING_TERM;
+    }
 }
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
@@ -335,8 +368,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LT(_LAYER4, KC_Q), HOME_A, HOME_S, HOME_D, HOME_F, KC_G,       KC_H, HOME_J, HOME_K, HOME_L, HOME_SCLN, KC_P,
       _______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
 
-      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER2, KC_SPC), KC_ESC,
-      KC_TAB, LT(_LAYER1, KC_BSPACE), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER2, KC_ENT), KC_ESC,
+      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BACKSPACE), RCS(KC_M), RGB_MODE_REVERSE
     ),
  /*
   * Layer: DE
@@ -374,9 +407,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_LAYER1] = LAYOUT(
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN, KC_BSLS,
-      KC_EXLM, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, KC_QUOT,                                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_RSHIFT,   KC_BSLS,
-      _______, KC_LPRN, LSFT(KC_COMM), LSFT(KC_DOT), KC_RPRN, KC_GRV, _______, _______, _______, _______, KC_HOME, KC_PGDOWN,  KC_PGUP, KC_END,   KC_BSLS, KC_NO,
-                                 _______, _______, KC_ENT, _______, _______,  _______,  _______, _______, _______, _______
+      KC_EXLM, LCTL(LGUI(KC_LEFT)), LSFT(LGUI(KC_LEFT)), LSFT(LGUI(KC_RIGHT)), LCTL(LGUI(KC_RIGHT)),KC_QUOT,                                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_RSFT,   KC_BSLS,
+      _______, LGUI(KC_LEFT), LSFT(LCTL(KC_TAB)), LCTL(KC_TAB), LGUI(KC_RIGHT), KC_GRV, _______, _______, _______, _______, KC_HOME, KC_PGDN,  KC_PGUP, KC_END,   KC_BSLS, KC_NO,
+                                 _______, _______, _______, _______, _______,  _______,  _______, _______, _______, _______
     ),
 /*
  * Layer2: Numbers
@@ -413,9 +446,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_LAYER3] = LAYOUT(
-      _______, KC_F1, KC_F2,  KC_F3, KC_F4,  KC_F5,                                                  KC_F6, KC_F7, KC_F8, KC_F9,  KC_F12, _______,
-      KC_F1, HOME_A, HOME_S, HOME_D, HOME_F, KC_PSCREEN,                      _______, KC_F4, KC_F5,  KC_F6, KC_F11,   KC_F12,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F1,  KC_F2, KC_F3, KC_F10, _______,
+      _______, KC_F1, KC_F2,  KC_F3, KC_F4,  KC_F5,                                                  KC_F6, KC_F7, KC_F8, KC_F9,  KC_F10, _______,
+      KC_F1, KC_F11, KC_F12, _______, _______, KC_PSCR,                      _______, KC_F4, KC_F5,  KC_F6, _______,   KC_F10,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F1,  KC_F2, KC_F3, _______, _______,
                                  _______, _______, _______, _______, _______,  _______,  _______, _______, _______, _______
     ),
 /*
@@ -461,7 +494,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_Z, KC_X, KC_C, HOME_CM_D, KC_V, KC_ESC, DF(_HANDS_DOWN), /* split */ _______, KC_TAB, KC_K, HOME_CM_H, KC_COMM, KC_DOT, KC_SLSH, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
-      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BACKSPACE), RCS(KC_M), RGB_MODE_REVERSE
     ),
 /*
  * Base Layer: HANDS DOWN
@@ -487,7 +520,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_X, KC_M, KC_L, HOME_HD_D, KC_B, KC_ESC, DF(_HANDS_DOWN_NEU), /* split */ _______, KC_TAB, KC_Z, HOME_HD_F, KC_SCLN, KC_COMM, KC_DOT, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
-      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BACKSPACE), RCS(KC_M), RGB_MODE_REVERSE
     ),
 /*
  * Base Layer: HANDS DOWN Neu
@@ -513,7 +546,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO, KC_X, KC_C, KC_L, HOME_HDN_D, KC_B, KC_ESC, DF(_QWERTY), /* split */ KC_NO, KC_TAB, KC_Z, HOME_HDN_U, KC_O, KC_Y, KC_K, KC_NO,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
-      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BACKSPACE), RCS(KC_M), RGB_MODE_REVERSE
     )
 // /*
 //  * Layer template
@@ -615,12 +648,13 @@ static void render_status(void) {
     oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (is_keyboard_master()) {
         render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         render_kyria_logo();
     }
+    return true;
 }
 #endif
 
