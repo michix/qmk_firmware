@@ -17,6 +17,18 @@
 #include "features/casemodes.h"
 #include <keymap_german.h>
 
+enum layers {
+    _QWERTY = 0,
+    _DE,
+    _COLEMAK_DH,
+    _HANDS_DOWN,
+    _HANDS_DOWN_NEU,
+    _LAYER1,
+    _LAYER2,
+    _LAYER3,
+    _LAYER4
+};
+
 /* Combos */
 enum combo_events {
   CB_COPY,
@@ -37,6 +49,9 @@ enum combo_events {
   CB_BSPC,
   CB_LSHFT,
   CB_RSHFT,
+  CB_ENTER,
+  CB_DEL,
+  CB_FLAYER,
   CB_LWIN_L,
   CB_LWIN_R,
   CB_OSS_L,
@@ -63,6 +78,9 @@ const uint16_t PROGMEM bslash_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM lshft_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM rshft_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
+const uint16_t PROGMEM del_combo[] = {HOME_D, HOME_F, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {HOME_J, HOME_K, COMBO_END};
+const uint16_t PROGMEM flayer_combo[] = {KC_Z, KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM lwin_combo_l[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM lwin_combo_r[] = {KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END};
 const uint16_t PROGMEM oss_combo_l[] = {KC_S, KC_D, COMBO_END};
@@ -87,6 +105,9 @@ combo_t key_combos[] = {
   [CB_LSHFT] = COMBO_ACTION(lshft_combo),
   [CB_RSHFT] = COMBO_ACTION(rshft_combo),
   [CB_BSPC] = COMBO_ACTION(bspc_combo),
+  [CB_ENTER] = COMBO_ACTION(enter_combo),
+  [CB_DEL] = COMBO_ACTION(del_combo),
+  [CB_FLAYER] = COMBO_ACTION(flayer_combo),
   [CB_LWIN_L] = COMBO_ACTION(lwin_combo_l),
   [CB_LWIN_R] = COMBO_ACTION(lwin_combo_r),
   [CB_OSS_L] = COMBO_ACTION(oss_combo_l),
@@ -185,6 +206,21 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         tap_code16(KC_BSPC);
       }
       break;
+    case CB_ENTER:
+      if (pressed) {
+        tap_code16(KC_ENTER);
+      }
+      break;
+    case CB_DEL:
+      if (pressed) {
+        tap_code16(KC_DEL);
+      }
+      break;
+    case CB_FLAYER:
+      if (pressed) {
+        set_oneshot_layer(_LAYER3, ONESHOT_START);
+      }
+      break;
     case CB_LWIN_L:
       if (pressed) {
         tap_code16(KC_LEFT_GUI);
@@ -250,18 +286,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
-/* Layer color effects */
-enum layers {
-    _QWERTY = 0,
-    _DE,
-    _COLEMAK_DH,
-    _HANDS_DOWN,
-    _HANDS_DOWN_NEU,
-    _LAYER1,
-    _LAYER2,
-    _LAYER3,
-    _LAYER4
-};
 
 // Always use Combos from QWERTY layer
 #define COMBO_ONLY_FROM_LAYER _QWERTY
@@ -343,7 +367,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_Z, KC_X, KC_C, HOME_V, KC_B, KC_ESC, DF(_COLEMAK_DH), _______, KC_TAB, KC_N, HOME_M, KC_COMM, KC_DOT, KC_SLSH, _______,
 
       RGB_MODE_FORWARD,  KC_ESC, LT(_LAYER2, KC_SPC), LT(_LAYER4, KC_ENT), KC_ESC,
-      KC_TAB, LT(_LAYER3, KC_DEL), LT(_LAYER1, KC_BACKSPACE), RCS(KC_M), RGB_MODE_REVERSE
+      KC_TAB, LT(_LAYER1, KC_BACKSPACE), LT(_LAYER3, KC_DEL), RCS(KC_M), RGB_MODE_REVERSE
     ),
  /*
   * Layer: DE
