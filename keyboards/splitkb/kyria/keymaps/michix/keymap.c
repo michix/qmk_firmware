@@ -81,10 +81,10 @@ const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM del_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM flayer_combo[] = {KC_Z, KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM lwin_combo_l[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM lwin_combo_r[] = {KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END};
 const uint16_t PROGMEM oss_combo_l[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM oss_combo_r[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM lwin_combo_l[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM lwin_combo_r[] = {KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
@@ -108,10 +108,10 @@ combo_t key_combos[] = {
   [CB_ENTER] = COMBO_ACTION(enter_combo),
   [CB_DEL] = COMBO_ACTION(del_combo),
   [CB_FLAYER] = COMBO_ACTION(flayer_combo),
-  [CB_LWIN_L] = COMBO_ACTION(lwin_combo_l),
-  [CB_LWIN_R] = COMBO_ACTION(lwin_combo_r),
   [CB_OSS_L] = COMBO_ACTION(oss_combo_l),
   [CB_OSS_R] = COMBO_ACTION(oss_combo_r),
+  [CB_LWIN_L] = COMBO_ACTION(lwin_combo_l),
+  [CB_LWIN_R] = COMBO_ACTION(lwin_combo_r),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -221,16 +221,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         set_oneshot_layer(_LAYER3, ONESHOT_START);
       }
       break;
-    case CB_LWIN_L:
-      if (pressed) {
-        tap_code16(KC_LEFT_GUI);
-      }
-      break;
-    case CB_LWIN_R:
-      if (pressed) {
-        tap_code16(KC_LEFT_GUI);
-      }
-      break;
     case CB_OSS_L:
       if (pressed) {
         set_oneshot_mods(MOD_BIT(KC_LSFT));
@@ -239,6 +229,16 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case CB_OSS_R:
       if (pressed) {
         set_oneshot_mods(MOD_BIT(KC_RSFT));
+      }
+      break;
+    case CB_LWIN_L:
+      if (pressed) {
+        tap_code16(KC_LEFT_GUI);
+      }
+      break;
+    case CB_LWIN_R:
+      if (pressed) {
+        tap_code16(KC_LEFT_GUI);
       }
       break;
   }
