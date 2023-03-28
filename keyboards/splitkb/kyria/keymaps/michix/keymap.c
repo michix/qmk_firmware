@@ -233,12 +233,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       break;
     case CB_OSS_L:
       if (pressed) {
-        tap_code16(OSM(KC_LSFT));
+        set_oneshot_mods(MOD_BIT(KC_LSFT));
       }
       break;
     case CB_OSS_R:
       if (pressed) {
-        tap_code16(OSM(KC_RSFT));
+        set_oneshot_mods(MOD_BIT(KC_RSFT));
       }
       break;
   }
