@@ -81,10 +81,10 @@ const uint16_t PROGMEM bspc_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM del_combo[] = {HOME_D, HOME_F, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {HOME_J, HOME_K, COMBO_END};
 const uint16_t PROGMEM flayer_combo[] = {KC_Z, KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM oss_combo_l[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM oss_combo_r[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM lwin_combo_l[] = {KC_A, KC_S, KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM lwin_combo_r[] = {KC_J, KC_K, KC_L, KC_SEMICOLON, COMBO_END};
+const uint16_t PROGMEM oss_combo_l[] = {HOME_S, HOME_D, COMBO_END};
+const uint16_t PROGMEM oss_combo_r[] = {HOME_K, HOME_L, COMBO_END};
+const uint16_t PROGMEM lwin_combo_l[] = {HOME_A, HOME_S, HOME_D, HOME_F, COMBO_END};
+const uint16_t PROGMEM lwin_combo_r[] = {HOME_J, HOME_K, HOME_L, HOME_SCLN, COMBO_END};
 
 combo_t key_combos[] = {
   [CB_COPY] = COMBO_ACTION(copy_combo),
